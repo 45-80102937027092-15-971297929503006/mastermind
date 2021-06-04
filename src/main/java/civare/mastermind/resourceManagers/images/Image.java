@@ -9,6 +9,8 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.EnumSet;
 import java.util.Objects;
 
@@ -64,21 +66,33 @@ public enum Image {
 
     Image(String folder, String name) {
         this.path =
-                Config.getCustomImagesPath() + Config.getBackslash() +
-                        folder + Config.getBackslash() +
-                        name + Config.getDOT() + Config.getImagesFormatName();
 
+//                          images folder
+                        Config.getBasePath()+
+
+//                                type folder
+                        Config.getBackslash() +
+                        folder +
+                        Config.getBackslash() +
+//                                image
+                        name +
+                        Config.getDOT() +
+                        Config.getImagesFormatName();
+
+        System.out.println(path);
 //        this is slower, do not know why
 //        this.imageIcon = ImageManager.loadImage(this.path);
 
         try {
+            imageIcon = new ImageIcon(getLocation(path));
+            defaultImageIcon = new ImageIcon(getLocation(path));
 
-            imageIcon = new ImageIcon(getLocation("/errors.png"));
-            defaultImageIcon = new ImageIcon(getLocation("/errors.png"));
+
+            //            Path p = Paths.get( "/resources", "images", "time", "0.png");
 
         } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("error in Image.java while loading images");
+
+            System.out.println("error in Image.java while loading image "+ path);
 
             System.exit(-1);
         }
@@ -90,14 +104,7 @@ public enum Image {
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JButton button = new JButton("alt text");
-//        try {
-//
-//            button.setIcon(new ImageIcon(Main.class.getResource("/errors.png")));
-//
-//        } catch (Exception ex) {
-//            System.out.println(ex);
-//            System.out.println(ex.getMessage());
-//        }
+
         button.setIcon(BLUE.getImageIcon());
 
         button.addActionListener(e -> {

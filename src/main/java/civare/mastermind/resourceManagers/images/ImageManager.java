@@ -28,33 +28,30 @@ public class ImageManager {
 
     /**
      * copy all from source to target path
+     *
+     * fixme
+     * copy from /resources to assets file, check if existing
      */
     public static void restartAllImages() {
 
-//        Main.class.getResource(
-//                Config.getReducedOriginalImagesPath() + Config.getBackslash() +
-//                        folder + Config.getBackslash() +
-//                        name + Config.getDOT() + Config.getImagesFormatName())
-
-//        Path targetPath = Paths.get(new File(Config.getCustomImagesPath()).getAbsolutePath());
-//        String s = Main.class.getResource(Config.getOriginalImagesPath());
-        Path targetPath = Paths.get(String.valueOf(Main.class.getResource(Config.getOriginalImagesPath())));
-//        Path sourcePath = Paths.get(new File(Config.getOriginalImagesPath()).getAbsolutePath());
-        Path sourcePath = Paths.get(String.valueOf(Main.class.getResource(Config.getReducedOriginalImagesPath())));
-
-        System.out.println(sourcePath);
-        System.out.println(targetPath);
-
-        try {
-            Files.walkFileTree(sourcePath, new CopyFileVisitor(targetPath));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-        for (Image image : EnumSet.allOf(Image.class)) {
-            image.flushToDefaultImage();
-        }
+        System.out.println("todo");
+//
+//        Path targetPath = Paths.get(String.valueOf(Main.class.getResource(Config.getOriginalImagesPath())));
+//        Path sourcePath = Paths.get(String.valueOf(Main.class.getResource(Config.getReducedOriginalImagesPath())));
+//
+//        System.out.println(sourcePath);
+//        System.out.println(targetPath);
+//
+//        try {
+//            Files.walkFileTree(sourcePath, new CopyFileVisitor(targetPath));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//
+//        for (Image image : EnumSet.allOf(Image.class)) {
+//            image.flushToDefaultImage();
+//        }
 
     }
 

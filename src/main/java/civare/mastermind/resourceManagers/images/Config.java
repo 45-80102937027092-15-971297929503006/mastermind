@@ -1,5 +1,7 @@
 package civare.mastermind.resourceManagers.images;
 
+import java.nio.file.Paths;
+
 //fixme prev values did not have file.separator at end
 public class Config {
 
@@ -13,22 +15,12 @@ public class Config {
     private static final String DOT = ".";
     private static final String IMAGES_FORMAT_NAME = "png";
 
-    private static final String CUSTOM_IMAGES_PATH =
-            backslash +
-                    "images" + backslash +
-                    "resized_images";
-    private static final String REDUCED_CUSTOM_IMAGES_PATH = CUSTOM_IMAGES_PATH;
-    private static final String REDUCED_ORIGINAL_IMAGES_PATH = CUSTOM_IMAGES_PATH;
-
-
-    private static final String ORIGINAL_IMAGES_PATH =
-            backslash +
-                    "images" + backslash +
-                    "original_images";
-
+    public static String getBasePath() {
+        return backslash + "images";
+    }
 
     public static String getPegsPath() {
-        return backslash + "images" + backslash + "pegs";
+        return  "pegs";
     }
 
     private static final String START_STOP_IMAGES_PATH = "stop";
@@ -40,6 +32,8 @@ public class Config {
     }
 
     public static String getTimeTiles() {
+//        return Paths.get("res", "bar", "baz.txt");
+
         return TIME_TILES;
     }
 
@@ -47,28 +41,8 @@ public class Config {
         return backslash;
     }
 
-    public static String getOriginalImagesPath() {
-        return ORIGINAL_IMAGES_PATH;
-    }
-
-    public static String getReducedOriginalImagesPath() {
-        return REDUCED_ORIGINAL_IMAGES_PATH;
-    }
-
-    public static String getReducedCustomImagesPath() {
-        return REDUCED_CUSTOM_IMAGES_PATH;
-    }
-
-    public static String getCustomImagesPath() {
-        return CUSTOM_IMAGES_PATH;
-    }
-
     public static String getImagesFormatName() {
         return IMAGES_FORMAT_NAME;
-    }
-
-    public static String[] getOriginalImagesFormatsNames() {
-        return ORIGINAL_IMAGES_FORMATS_NAMES;
     }
 
     public static String getOpenedTiles() {
