@@ -5,6 +5,11 @@ import java.nio.file.Paths;
 //fixme prev values did not have file.separator at end
 public class Config {
 
+    public static String getBaseFolder() {
+        return backslash +  "images" + backslash;
+    }
+
+
     private static final String backslash = "/";
     //    formats in which images will be loaded
     private static final String[] ORIGINAL_IMAGES_FORMATS_NAMES = {"png", "jpg"};

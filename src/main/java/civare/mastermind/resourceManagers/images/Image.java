@@ -62,7 +62,7 @@ public enum Image {
 
     ;
 
-    public enum ButtonImage {
+    public enum Button {
         VICTORY,
         DEFEAT,
         PLAY_AGAIN,
@@ -70,9 +70,20 @@ public enum Image {
 
         private static final String path = Config.getButtonPath();
         private final String name;
+        private final String location;
+//
 
-        ButtonImage() {
+        Button() {
             this.name = this.name().toLowerCase();
+            this.location =
+                    Config.getBaseFolder() +
+                    getClass().getSimpleName().toLowerCase() +
+                    Config.getBackslash() +
+                    name +
+                    Config.getDOT() +
+                    Config.getImagesFormatName();
+
+            System.out.println(name + " - " + location);
         }
 
         public String getName() {
@@ -83,10 +94,25 @@ public enum Image {
             return path;
         }
 
-        public URL getLocation(String location) {
-            return Objects.requireNonNull(Main.class.getResource(location));
-//        return location;
+        public URL getLocation() {
+            return Objects.requireNonNull(Main.class.getResource(this.location));
         }
+
+//        public ImageIcon getImageIcon() {
+//            try {
+//                imageIcon = new ImageIcon(getLocation(path));
+//                defaultImageIcon = new ImageIcon(getLocation(path));
+//
+//
+//                //            Path p = Paths.get( "/resources", "images", "time", "0.png");
+//
+//            } catch (Exception e) {
+//
+//                System.out.println("error in Image.java while loading image "+ path);
+//
+//                System.exit(-1);
+//            }
+//        }
     }
 
 
@@ -135,6 +161,9 @@ public enum Image {
     }
 
     public static void main(String[] args) {
+
+//        URL l = Image.Button.DEFEAT.getLocation();
+//        System.out.println(l);
         JFrame f = new JFrame();
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
