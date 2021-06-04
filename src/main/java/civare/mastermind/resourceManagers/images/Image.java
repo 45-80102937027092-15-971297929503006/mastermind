@@ -1,6 +1,6 @@
-package resourceManagers.images;
+package civare.mastermind.resourceManagers.images;
 
-import Main;
+import civare.mastermind.Main;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

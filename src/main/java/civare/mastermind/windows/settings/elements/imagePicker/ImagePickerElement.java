@@ -1,9 +1,10 @@
-package com.minesweeper.windows.settings.elements.imagePicker;
+package civare.mastermind.windows.settings.elements.imagePicker;
 
-import com.minesweeper.resourceManagers.images.ImageManager;
-import main.windows.settings.elements.imagePicker.driver.ImageFileView;
-import main.windows.settings.elements.imagePicker.driver.ImageFilter;
-import main.windows.settings.elements.imagePicker.driver.ImagePreview;
+import civare.mastermind.resourceManagers.images.Image;
+import civare.mastermind.resourceManagers.images.ImageManager;
+import civare.mastermind.windows.settings.elements.imagePicker.driver.ImageFileView;
+import civare.mastermind.windows.settings.elements.imagePicker.driver.ImageFilter;
+import civare.mastermind.windows.settings.elements.imagePicker.driver.ImagePreview;
 
 import javax.swing.*;
 import java.awt.*;

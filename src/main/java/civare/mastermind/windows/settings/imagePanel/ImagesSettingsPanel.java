@@ -1,7 +1,7 @@
-package com.minesweeper.windows.settings.imagePanel;
+package civare.mastermind.windows.settings.imagePanel;
 
-import com.minesweeper.windows.settings.elements.imagePicker.ImagePickerElement;
-import com.minesweeper.windows.settings.elements.reset.RestartDefaultButton;
+import civare.mastermind.windows.settings.elements.imagePicker.ImagePickerElement;
+import civare.mastermind.windows.settings.elements.reset.RestartDefaultButton;
 
 import javax.swing.*;
 import java.awt.*;
@@ -43,9 +43,9 @@ public class ImagesSettingsPanel extends JPanel {
     private static class ButtonPanel extends JPanel {
         private ButtonPanel() {
 
-            add(new ImagePickerElement(Image.VICTORY));
-            add(new ImagePickerElement(Image.PLAY_AGAIN));
-            add(new ImagePickerElement(Image.DEFEAT));
+//            add(new ImagePickerElement(Image.VICTORY));
+//            add(new ImagePickerElement(Image.PLAY_AGAIN));
+//            add(new ImagePickerElement(Image.DEFEAT));
 
             add(new RestartDefaultButton());
 
@@ -56,9 +56,9 @@ public class ImagesSettingsPanel extends JPanel {
         private ClosedTilePanel() {
 
 
-            add(new ImagePickerElement(Image.CLOSED_CELL));
-            add(new ImagePickerElement(Image.FLAG));
-            add(new ImagePickerElement(Image.NOT_SURE));
+//            add(new ImagePickerElement(Image.CLOSED_CELL));
+//            add(new ImagePickerElement(Image.FLAG));
+//            add(new ImagePickerElement(Image.NOT_SURE));
 
             add(new RestartDefaultButton());
 
@@ -68,19 +68,19 @@ public class ImagesSettingsPanel extends JPanel {
     private class OpenedTilePanel extends JPanel {
         private OpenedTilePanel() {
 
-            add(new ImagePickerElement(Image.MINE));
-            add(new ImagePickerElement(Image.ZERO));
-            add(new ImagePickerElement(Image.ONE));
-
-            add(new ImagePickerElement(Image.TWO));
-            add(new ImagePickerElement(Image.THREE));
-            add(new ImagePickerElement(Image.FOUR));
-
-            add(new ImagePickerElement(Image.FIVE));
-            add(new ImagePickerElement(Image.SIX));
-            add(new ImagePickerElement(Image.SEVEN));
-
-            add(new ImagePickerElement(Image.EIGHT));
+//            add(new ImagePickerElement(Image.MINE));
+//            add(new ImagePickerElement(Image.ZERO));
+//            add(new ImagePickerElement(Image.ONE));
+//
+//            add(new ImagePickerElement(Image.TWO));
+//            add(new ImagePickerElement(Image.THREE));
+//            add(new ImagePickerElement(Image.FOUR));
+//
+//            add(new ImagePickerElement(Image.FIVE));
+//            add(new ImagePickerElement(Image.SIX));
+//            add(new ImagePickerElement(Image.SEVEN));
+//
+//            add(new ImagePickerElement(Image.EIGHT));
 
             add(new RestartDefaultButton());
 

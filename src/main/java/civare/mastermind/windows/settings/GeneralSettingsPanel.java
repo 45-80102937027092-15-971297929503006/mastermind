@@ -1,7 +1,7 @@
-package com.minesweeper.windows.settings;
+package civare.mastermind.windows.settings;
 
-import resourceManagers.constants.Constant;
-import windows.settings.elements.textField.TextFieldElement;
+import civare.mastermind.resourceManagers.constants.Constant;
+import civare.mastermind.windows.settings.elements.textField.TextFieldElement;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,10 +12,10 @@ public class GeneralSettingsPanel extends JPanel {
 
         setLayout(new GridLayout(0, 1));
 
-        add(new TextFieldElement(Constant.NUMBER_OF_ROWS, "number of rows"));
-        add(new TextFieldElement(Constant.NUMBER_OF_COLUMNS, "number of columns"));
-        add(new TextFieldElement(Constant.NUMBER_OF_MINES, "number of mines"));
-
+//        add(new TextFieldElement(Constant.NUMBER_OF_ROWS, "number of rows"));
+//        add(new TextFieldElement(Constant.NUMBER_OF_COLUMNS, "number of columns"));
+//        add(new TextFieldElement(Constant.NUMBER_OF_MINES, "number of mines"));
+//
 
 //TODO
 //        add(new RestartCurrentButton(Constant.NUMBER_OF_ROWS, Constant.NUMBER_OF_COLUMNS, Constant.NUMBER_OF_MINES));

@@ -1,7 +1,7 @@
-package windows.index;
+package civare.mastermind.windows.index;
 
-import resourceManagers.constants.Constant;
-import resourceManagers.constants.ConstantsManager;
+import civare.mastermind.resourceManagers.constants.Constant;
+import civare.mastermind.resourceManagers.constants.ConstantsManager;
 
 import javax.swing.*;
 import java.awt.*;

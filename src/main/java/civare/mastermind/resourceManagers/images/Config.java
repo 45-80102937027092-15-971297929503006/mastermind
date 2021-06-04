@@ -1,4 +1,4 @@
-package resourceManagers.images;
+package civare.mastermind.resourceManagers.images;
 
 //fixme prev values did not have file.separator at end
 public class Config {

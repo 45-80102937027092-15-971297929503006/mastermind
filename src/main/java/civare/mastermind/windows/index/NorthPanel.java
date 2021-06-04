@@ -1,8 +1,8 @@
-package windows.index;
+package civare.mastermind.windows.index;
 
-import eventDrivers.Command;
-import resourceManagers.images.Image;
-import windows.settings.SettingsFrame;
+import civare.mastermind.eventDrivers.Command;
+import civare.mastermind.resourceManagers.images.Image;
+import civare.mastermind.windows.settings.SettingsFrame;
 
 import javax.swing.*;
 import java.beans.PropertyChangeEvent;

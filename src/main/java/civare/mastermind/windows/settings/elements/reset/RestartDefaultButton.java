@@ -1,7 +1,7 @@
-package com.minesweeper.windows.settings.elements.reset;
+package civare.mastermind.windows.settings.elements.reset;
 
-import com.minesweeper.resourceManagers.constants.ConstantsManager;
-import com.minesweeper.resourceManagers.images.ImageManager;
+import civare.mastermind.resourceManagers.constants.ConstantsManager;
+import civare.mastermind.resourceManagers.images.ImageManager;
 
 import javax.swing.*;
 import java.util.concurrent.TimeUnit;

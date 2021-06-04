@@ -1,4 +1,4 @@
-package resourceManagers.sounds;
+package civare.mastermind.resourceManagers.sounds;
 
 //    TODO ability to add new sounds
 

@@ -1,6 +1,6 @@
-package com.minesweeper.windows.settings.elements.reset;
+package civare.mastermind.windows.settings.elements.reset;
 
-import com.minesweeper.resourceManagers.constants.Constant;
+import civare.mastermind.resourceManagers.constants.Constant;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

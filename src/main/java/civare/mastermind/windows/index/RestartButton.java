@@ -1,7 +1,7 @@
-package windows.index;
+package civare.mastermind.windows.index;
 
-import eventDrivers.Command;
-import resourceManagers.images.Image;
+import civare.mastermind.eventDrivers.Command;
+import civare.mastermind.resourceManagers.images.Image;
 
 import javax.swing.*;
 import java.beans.PropertyChangeListener;
@@ -15,7 +15,7 @@ public class RestartButton extends JButton {
 
         support = new PropertyChangeSupport(this);
 
-        setIcon(Image.PLAY_AGAIN.getImageIcon());
+//        setIcon(Image.PLAY_AGAIN.getImageIcon());
 
         addActionListener(e -> {
             System.out.println("restart button clicked");

@@ -1,6 +1,7 @@
+package civare.mastermind;
 
-import resourceManagers.constants.Config;
-import windows.index.MainFrame;
+import civare.mastermind.resourceManagers.constants.Config;
+import civare.mastermind.windows.index.MainFrame;
 
 import javax.swing.*;
 import java.io.File;
@@ -8,10 +9,24 @@ import java.io.File;
 public class Main {
 
     public static void main(String[] args) {
+//        todo alt images
+
+        /*
+        check if assets file is present
+            file is present
+                continue
+            file is not present
+                check if assets are present in /resources
+                    files are not present in assets
+                        create default assets in /resources
+
+                copy from /resources to /game_assets
+         */
+
 
 //        create config folder if missing
         File f = new File(Config.getConstantsFolder());
-        System.out.println(f.mkdir());
+        System.out.println("folder created ? " + f.mkdir());
 
         SwingUtilities.invokeLater(MainFrame::new);
     }

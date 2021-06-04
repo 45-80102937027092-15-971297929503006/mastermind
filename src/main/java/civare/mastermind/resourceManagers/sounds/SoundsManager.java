@@ -1,7 +1,7 @@
-package resourceManagers.sounds;
+package civare.mastermind.resourceManagers.sounds;
 
-import com.sun.tools.javac.Main;
-import resourceManagers.constants.Constant;
+import civare.mastermind.Main;
+import civare.mastermind.resourceManagers.constants.Constant;
 
 import javax.sound.sampled.*;
 import java.io.IOException;

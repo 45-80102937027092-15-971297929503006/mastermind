@@ -1,8 +1,8 @@
-package com.minesweeper.windows.settings;
+package civare.mastermind.windows.settings;
 
-import eventDrivers.Command;
-import resourceManagers.constants.Constant;
-import windows.settings.imagePanel.ImagesSettingsPanel;
+import civare.mastermind.eventDrivers.Command;
+import civare.mastermind.resourceManagers.constants.Constant;
+import civare.mastermind.windows.settings.imagePanel.ImagesSettingsPanel;
 
 import javax.swing.*;
 import java.awt.*;

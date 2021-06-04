@@ -1,4 +1,4 @@
-package main.windows.settings.elements.imagePicker.driver;
+package civare.mastermind.windows.settings.elements.imagePicker.driver;
 
 /*
  * Copyright (c) 1995, 2008, Oracle and/or its affiliates. All rights reserved.

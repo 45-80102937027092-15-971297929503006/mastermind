@@ -1,8 +1,8 @@
-package com.minesweeper.windows.settings;
+package civare.mastermind.windows.settings;
 
-import com.minesweeper.eventDrivers.Command;
-import com.minesweeper.resourceManagers.constants.Config;
-import com.minesweeper.resourceManagers.constants.ConstantsManager;
+import civare.mastermind.eventDrivers.Command;
+import civare.mastermind.resourceManagers.constants.Config;
+import civare.mastermind.resourceManagers.constants.ConstantsManager;
 
 import java.awt.*;
 import java.awt.event.WindowEvent;
@@ -39,8 +39,8 @@ public class SettingsWindowListener implements WindowListener {
      */
     @Override
     public void windowClosing(WindowEvent e) {
-
-        ConstantsManager.updateConstants(Config.getConstantsMemoryPath());
+//  fixme
+//        ConstantsManager.updateConstants(Config.getConstantsMemoryPath());
         support.firePropertyChange("settings window closing", null,
                 Command.RESTART_MAINFRAME);
 

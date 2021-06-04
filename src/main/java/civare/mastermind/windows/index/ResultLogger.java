@@ -1,6 +1,6 @@
-package windows.index;
+package civare.mastermind.windows.index;
 
-import resourceManagers.constants.Constant;
+import civare.mastermind.resourceManagers.constants.Constant;
 
 import java.io.*;
 import java.util.ArrayList;

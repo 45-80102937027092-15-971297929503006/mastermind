@@ -1,4 +1,4 @@
-package eventDrivers;
+package civare.mastermind.eventDrivers;
 
 /**
  * used for firing events

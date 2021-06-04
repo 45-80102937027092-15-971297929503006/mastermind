@@ -1,4 +1,4 @@
-package main.windows.settings.imagePanel;
+package civare.mastermind.windows.settings.imagePanel;
 
 public class ImagesSettingsButtonPanel {
 }

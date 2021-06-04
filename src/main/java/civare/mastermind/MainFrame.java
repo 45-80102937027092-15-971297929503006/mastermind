@@ -1,3 +1,5 @@
+package civare.mastermind;
+
 import javax.swing.*;
 import java.awt.*;
 

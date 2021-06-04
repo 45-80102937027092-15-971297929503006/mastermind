@@ -1,11 +1,10 @@
-package windows.index;
+package civare.mastermind.windows.index;
 
-import com.minesweeper.eventDrivers.Command;
-import com.minesweeper.minesweeper.windows.index.CenterPanel;
-import com.minesweeper.resourceManagers.constants.Config;
-import com.minesweeper.resourceManagers.constants.Constant;
-import com.minesweeper.resourceManagers.constants.ConstantsManager;
-import com.minesweeper.windows.settings.SettingsWindowListener;
+import civare.mastermind.eventDrivers.Command;
+import civare.mastermind.resourceManagers.constants.Config;
+import civare.mastermind.resourceManagers.constants.Constant;
+import civare.mastermind.resourceManagers.constants.ConstantsManager;
+import civare.mastermind.windows.settings.SettingsWindowListener;
 
 import javax.swing.*;
 import java.awt.*;
@@ -47,7 +46,7 @@ public class MainFrame extends JFrame implements PropertyChangeListener {
 
         restartButton.addListener(centerPanel);
         restartButton.addListener(northPanel);
-        centerPanel.addListener(northPanel);
+//        centerPanel.addListener(northPanel);
 
         SettingsWindowListener.getInstance().addListener(this);
         SettingsWindowListener.getInstance().addListener(northPanel);
@@ -61,7 +60,7 @@ public class MainFrame extends JFrame implements PropertyChangeListener {
         SettingsWindowListener.getInstance().removeListener(northPanel);
 
         restartButton.removeListener(centerPanel);
-        centerPanel.removeListener(northPanel);
+//        centerPanel.removeListener(northPanel);
         restartButton.removeListener(northPanel);
 
         dispose();
@@ -103,7 +102,8 @@ public class MainFrame extends JFrame implements PropertyChangeListener {
             Constant.WIDTH.setValue(jFrame.getSize().getWidth());
             Constant.HEIGHT.setValue(jFrame.getSize().getHeight());
 
-            ConstantsManager.updateConstants(Config.getConstantsMemoryPath());
+//            fixme
+//            ConstantsManager.updateConstants(Config.getConstantsMemoryPath());
         }
 
         @Override

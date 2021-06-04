@@ -1,6 +1,6 @@
-package com.minesweeper.windows.settings.elements.textField;
+package civare.mastermind.windows.settings.elements.textField;
 
-import com.minesweeper.resourceManagers.constants.Constant;
+import civare.mastermind.resourceManagers.constants.Constant;
 
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;

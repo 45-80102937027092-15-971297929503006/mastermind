@@ -1,8 +1,9 @@
-package windows.index;
+package civare.mastermind.windows.index;
 
-import eventDrivers.Command;
-import resourceManagers.constants.Constant;
-import resourceManagers.constants.ConstantsManager;
+import civare.mastermind.eventDrivers.Command;
+import civare.mastermind.resourceManagers.constants.Constant;
+import civare.mastermind.resourceManagers.constants.ConstantsManager;
+import civare.mastermind.resourceManagers.images.Image;
 
 import javax.swing.*;
 import java.awt.*;
@@ -34,19 +35,26 @@ public class TimerElement extends JPanel implements PropertyChangeListener {
         setBorder(BorderFactory.createLineBorder(Color.black));
         setLayout(new FlowLayout());
 
-        mostSigMinDigitLabel = new JLabel(Image.T_ZERO.getImageIcon());
+
+//        try {
+//            ImageIcon zeroImage = Image.T_ZERO.getImageIcon();
+//        } catch (Exception e) {
+//            System.out.println("no init image");
+//        }
+
+        mostSigMinDigitLabel = new JLabel("zeroImage");
         add(mostSigMinDigitLabel);
 
-        leastSigMinDigitLabel = new JLabel(Image.T_ZERO.getImageIcon());
+        leastSigMinDigitLabel = new JLabel("zeroImage");
         add(leastSigMinDigitLabel);
 
         JLabel separator = new JLabel(":");
         add(separator);
 
-        mostSigSecDigitLabel = new JLabel(Image.T_ZERO.getImageIcon());
+        mostSigSecDigitLabel = new JLabel("zeroImage");
         add(mostSigSecDigitLabel);
 
-        leastSigSecDigitLabel = new JLabel(Image.T_ZERO.getImageIcon());
+        leastSigSecDigitLabel = new JLabel("zeroImage");
         add(leastSigSecDigitLabel);
 
 

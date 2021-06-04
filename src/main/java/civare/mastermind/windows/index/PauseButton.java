@@ -1,8 +1,8 @@
-package windows.index;
+package civare.mastermind.windows.index;
 
-import resourceManagers.images.Image;
+import civare.mastermind.resourceManagers.images.Image;
 
-import resourceManagers.images.Image;
+import civare.mastermind.resourceManagers.images.Image;
 
 import javax.swing.*;
 
@@ -13,7 +13,7 @@ public class PauseButton extends JButton {
 
     public PauseButton() {
 
-        this.setIcon(Image.STOP.getImageIcon());
+//        this.setIcon(Image.STOP.getImageIcon());
     }
 
     public State getState() {

@@ -1,6 +1,6 @@
-package com.minesweeper.windows.settings;
+package civare.mastermind.windows.settings;
 
-import com.minesweeper.windows.settings.elements.reset.RestartDefaultButton;
+import civare.mastermind.windows.settings.elements.reset.RestartDefaultButton;
 
 import javax.swing.*;
 

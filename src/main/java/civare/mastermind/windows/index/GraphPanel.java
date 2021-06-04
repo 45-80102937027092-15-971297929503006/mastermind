@@ -1,4 +1,4 @@
-package windows.index;
+package civare.mastermind.windows.index;
 
 import javax.swing.*;
 import java.awt.*;

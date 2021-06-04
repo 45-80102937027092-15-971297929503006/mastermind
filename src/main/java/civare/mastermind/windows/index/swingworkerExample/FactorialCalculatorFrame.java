@@ -1,4 +1,4 @@
-package main.windows.index.swingworkerExample;
+package civare.mastermind.windows.index.swingworkerExample;
 
 import javax.swing.*;
 import java.awt.*;
