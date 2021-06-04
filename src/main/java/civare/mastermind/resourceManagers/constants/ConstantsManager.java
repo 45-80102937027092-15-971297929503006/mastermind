@@ -7,33 +7,20 @@ package civare.mastermind.resourceManagers.constants;
 import civare.mastermind.Main;
 
 import java.io.*;
+//import java.nio.file.Path;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.LinkedHashMap;
 import java.util.Scanner;
+import java.util.concurrent.locks.Condition;
 
 // todo what if default settings file is deleted
 
 // todo handle restart settings with thread wait differently
 public class ConstantsManager {
 
-
-	// get a file from the resources folder
-	// works everywhere, IDEA, unit test and JAR file.
-	private static InputStream getFileFromResourceAsStream(String fileName) {
-
-		// The class loader that loaded the class
-		ClassLoader classLoader = Main.class.getClassLoader();
-		InputStream inputStream = classLoader.getResourceAsStream(fileName);
-
-		// the stream holding the file content
-		if (inputStream == null) {
-			throw new IllegalArgumentException("file not found! " + fileName);
-		} else {
-			return inputStream;
-		}
-
-	}
 
 	private static String getFileFromResourceAsString(String fileName) {
 
@@ -52,7 +39,9 @@ public class ConstantsManager {
 
 
 	/**
-	 * reads from default_constants.txt
+	 * throws {@code IllegalArgumentException} if file not present
+	 *
+	 * reads from {@code Config.getDefaultConstantsMemoryPath()}
 	 * sets constants values to values from constants instead of defined in this
 	 * <p>
 	 * use this at the start of program to get latest constants
@@ -79,17 +68,26 @@ public class ConstantsManager {
 	public static LinkedHashMap<Integer, String> initializeConstants() {
 		System.out.println("*** " + (new Throwable().getStackTrace())[0].getMethodName() + " ***");
 
-		LinkedHashMap<Integer, String> error_log = new LinkedHashMap<>();
 
-		Constant[] backup_states = new Constant[Constant.getNumOfConstants()];
+		//		default values, hardcoded in source
+		//		used if default constants file is not present
+		ArrayList<Constant> bu_constants = new ArrayList<>(EnumSet.allOf(Constant.class));
 
-		int i = 0;
 
-		for (Constant constant : EnumSet.allOf(Constant.class)) {
-			backup_states[i++] = constant;
+		if (! Paths.get(Config.getDefaultConstantsMemoryPath()).toFile().exists()) {
+			System.out.println("file not found: " + Config.getDefaultConstantsMemoryPath());
+
+			for (Constant constant: EnumSet.allOf(Constant.class)) {
+				constant = bu_constants.remove(0);
+			}
+
+			throw new IllegalArgumentException("file not found: " + Config.getDefaultConstantsMemoryPath());
 		}
 
-		try (FileReader fr = new FileReader(getFileFromResourceAsString(Config.getDefaultConstantsMemoryPath()));
+
+		LinkedHashMap<Integer, String> error_log = new LinkedHashMap<>();
+
+		try (FileReader fr = new FileReader(Config.getDefaultConstantsMemoryPath());
 				BufferedReader bw = new BufferedReader(fr)) {
 
 			String line;
@@ -144,27 +142,28 @@ public class ConstantsManager {
 
 
 		} catch (IOException e) {
-			System.out.println("IOException");
+//			System.out.println("IOException");
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 
 		} catch (Exception e) {
-			System.out.println("Exception");
+//			System.out.println("Exception");
+			System.out.println(e);
 			System.out.println(e.getMessage());
+			System.out.println();
 			printAll();
 
-			i = 0;
-			for (Constant constant : EnumSet.allOf(Constant.class)) {
-				constant = backup_states[i++];
+			for (Constant constant: EnumSet.allOf(Constant.class)) {
+				constant = bu_constants.remove(0);
 			}
 
-			for (Constant constant : EnumSet.allOf(Constant.class)) {
-				System.out.println(constant);
-			}
+			printAll();
 
 		}
 
+		System.out.println("error log");
 		error_log.forEach((key, value) -> System.out.println(key + ":" + value));
+		System.out.println();
 
 		return error_log;
 	}
@@ -186,7 +185,7 @@ public class ConstantsManager {
 		Object value = (line.split(" "))[1];
 
 		if (constant.getValue() instanceof Integer) {
-			if (value.toString().matches("[1-9][0-9]*")) {
+			if (value.toString().matches("[0-9][0-9]*")) {
 				constant.setValue(Integer.parseInt(String.valueOf(value)));
 
 				if (!errorMessagePrefix.equals("")) {
@@ -268,49 +267,63 @@ public class ConstantsManager {
 	}
 
 	/**
+	 * try clearing content of constant config file
+	 * 		if file not present
+	 * 			create it
+	 *
+	 *
+	 *
+	 *
 	 * sets to default constants
 	 */
 	public static void restartConstants() {
-		ArrayList<String> lines = new ArrayList<>();
-//  FIXME this will not work with maven
-		File f = new File(String.valueOf(Config.getDefaultConstantsMemoryPath()));
+//		try clearing content of constant config file
+//			if file present
 
-//        File f = new File(String.valueOf(Main.class.getResource(Config.getConstantsMemoryPath())));
-//        File f = new File(Config.getDefaultConstantsMemoryPath());
+//		todo check if needed to create file
+		Constant.restartAllToDefaultValues();
+		updateConstants(Config.getDefaultConstantsMemoryPath());
 
-		if (!f.exists()) {
-			try {
-				f.createNewFile();
+//		if ()
 
-//                copy current to default and custom
-				updateConstants(String.valueOf(Main.class.getResource(Config.getDefaultConstantsMemoryPath())));
-//                updateConstants(Config.getConstantsMemoryPath());
-//				updateConstants(String.valueOf(Main.class.getResource(Config.getConstantsMemoryPath())));
 
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+//		ArrayList<String> lines = new ArrayList<>();
 
-		} else {
+//		  FIXME this will not work with maven
+//		File f = new File(String.valueOf(Config.getDefaultConstantsMemoryPath()));
 
-//            read from default
-			try (Scanner myReader = new Scanner(f)) {
-				while (myReader.hasNextLine()) {
-					lines.add(myReader.nextLine());
-				}
-			} catch (FileNotFoundException e) {
-				System.out.println("An error occurred.");
-				e.printStackTrace();
-			}
 
-//            copy from default to custom
-			try (FileOutputStream fileOutputStream = new FileOutputStream(Config.getDefaultConstantsMemoryPath())) {
-				fileOutputStream.write(String.join("\n", lines).getBytes());
-			} catch (IOException fileNotFoundException) {
-				fileNotFoundException.printStackTrace();
-			}
+//		if (!f.exists()) {
+//			try {
+//				f.createNewFile();
+//
+////                copy current to default and custom
+//				updateConstants(String.valueOf(Main.class.getResource(Config.getDefaultConstantsMemoryPath())));
+//
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
 
-		}
+//		} else {
+//
+////            read from default
+//			try (Scanner myReader = new Scanner(f)) {
+//				while (myReader.hasNextLine()) {
+//					lines.add(myReader.nextLine());
+//				}
+//			} catch (FileNotFoundException e) {
+//				System.out.println("An error occurred.");
+//				e.printStackTrace();
+//			}
+//
+////            copy from default to custom
+//			try (FileOutputStream fileOutputStream = new FileOutputStream(Config.getDefaultConstantsMemoryPath())) {
+//				fileOutputStream.write(String.join("\n", lines).getBytes());
+//			} catch (IOException fileNotFoundException) {
+//				fileNotFoundException.printStackTrace();
+//			}
+//
+//		}
 	}
 
 }

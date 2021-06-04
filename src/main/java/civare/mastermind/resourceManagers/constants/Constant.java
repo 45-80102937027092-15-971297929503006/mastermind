@@ -1,6 +1,7 @@
 package civare.mastermind.resourceManagers.constants;
 
 import java.io.File;
+import java.util.EnumSet;
 import java.util.LinkedHashMap;
 
 /**
@@ -30,12 +31,28 @@ public enum Constant {
 	private static final String initValue = ConstantCounterManager.initValue;
 	private final String id;
 	private Object value;
+	private Object defaultValue;
+//	private Object initValue;
 
 	Constant(Object value) {
 		this.id = this.name();
 		this.value = value;
+		this.defaultValue = value;
+//		this.value = initValue;
 
 		ConstantCounterManager.setNumOfConstants(ConstantCounterManager.getNumOfConstants() + 1);
+	}
+
+	public static void restartAllToDefaultValues() {
+
+		for (Constant constant : EnumSet.allOf(Constant.class)) {
+			constant.value = constant.defaultValue;
+		}
+
+	}
+
+	public Object getDefaultValue() {
+		return defaultValue;
 	}
 
 	public static int getNumOfConstants() {
@@ -51,8 +68,6 @@ public enum Constant {
 
         /*
         check if assets file is present
-            file is present
-                continue
             file is not present
                 check if assets are present in /resources
                     files are not present in assets
@@ -67,22 +82,27 @@ public enum Constant {
 		boolean isFolderCreated = f.mkdir();
 		System.out.println("was assets folder present: " + !isFolderCreated);
 
-		LinkedHashMap<Integer, String> errorLog = ConstantsManager.initializeConstants();
+		File configFile = new File(Config.getDefaultConstantsMemoryPath());
+		System.out.println("is config file present: " + configFile.exists());
 
+		try {
+			LinkedHashMap<Integer, String> errorLog = ConstantsManager.initializeConstants();
 
-//			print errors
-		System.out.println("error log");
-		errorLog.forEach((k, v) -> System.out.println(k + " -> " + v));
-		System.out.println("error log done");
+		} catch (IllegalArgumentException e) {
+//			file not found
+			System.out.println(e.getMessage());
 
+		}
 
-		//
-//		ConstantsManager.initializeConstants();
-//
+		System.out.println("main");
+		ConstantsManager.printAll();
+
+        ConstantsManager.updateConstants(Config.getDefaultConstantsMemoryPath());
+
+//		ConstantsManager.restartConstants();
 //
 //		ConstantsManager.printAll();
 
-        ConstantsManager.updateConstants(Config.getDefaultConstantsMemoryPath());
 	}
 
 	@Override

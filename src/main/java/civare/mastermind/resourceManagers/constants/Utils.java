@@ -10,6 +10,7 @@ import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 
 public class Utils {
+
 	// get a file from the resources folder
 	// works everywhere, IDEA, unit test and JAR file.
 	private static InputStream getFileFromResourceAsStream(String fileName) {
