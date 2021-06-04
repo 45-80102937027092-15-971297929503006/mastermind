@@ -17,6 +17,40 @@ import java.util.Scanner;
 // todo handle restart settings with thread wait differently
 public class ConstantsManager {
 
+
+	// get a file from the resources folder
+	// works everywhere, IDEA, unit test and JAR file.
+	private static InputStream getFileFromResourceAsStream(String fileName) {
+
+		// The class loader that loaded the class
+		ClassLoader classLoader = Main.class.getClassLoader();
+		InputStream inputStream = classLoader.getResourceAsStream(fileName);
+
+		// the stream holding the file content
+		if (inputStream == null) {
+			throw new IllegalArgumentException("file not found! " + fileName);
+		} else {
+			return inputStream;
+		}
+
+	}
+
+	private static String getFileFromResourceAsString(String fileName) {
+
+		// The class loader that loaded the class
+		ClassLoader classLoader = Main.class.getClassLoader();
+		InputStream inputStream = classLoader.getResourceAsStream(fileName);
+
+		// the stream holding the file content
+		if (inputStream == null) {
+			throw new IllegalArgumentException("file not found! " + fileName);
+		} else {
+			return String.valueOf(inputStream);
+		}
+
+	}
+
+
 	/**
 	 * reads from default_constants.txt
 	 * sets constants values to values from constants instead of defined in this
@@ -45,7 +79,6 @@ public class ConstantsManager {
 	public static LinkedHashMap<Integer, String> initializeConstants() {
 		System.out.println("*** " + (new Throwable().getStackTrace())[0].getMethodName() + " ***");
 
-//		System.out.println(f.getAbsolutePath());
 		LinkedHashMap<Integer, String> error_log = new LinkedHashMap<>();
 
 		Constant[] backup_states = new Constant[Constant.getNumOfConstants()];
@@ -56,88 +89,86 @@ public class ConstantsManager {
 			backup_states[i++] = constant;
 		}
 
-//		try (FileReader fr = new FileReader(Config.getConstantsMemoryPath());
-//			 BufferedReader bw = new BufferedReader(fr)) {
-//
-//			String line;
-//
-////            which token is being processed
-//			int index = 0;
-//			for (Constant constant : EnumSet.allOf(Constant.class)) {
-///*
-//
-//                  default_constants.txt contains less lines than sum of constants is
-//
-//                  breaks assignment
-//                  constants use predefined values
-//                 */
-//
-//				if ((line = bw.readLine()) == null) {
-//					error_log.put(index, "not enough lines from this line");
-//					break;
-//				}
-//
-//				index++;
-//
-//
-//				if ((line.split(" ")).length != 2) {
-//
-//					if (line.equals("")) {
-//						error_log.put(index, "empty line");
-//					} else {
-//						if ((line.split(" "))[0].equals(constant.getId())) {
-//
-////                                if ((line.split(" "))[0].equals(constant.id)) {
-//
-//							if (line.split(" ").length > 2) {
-//
-//								handleValue(error_log, line, index, constant, "too much tokens");
-//
-//							} else {
-//								error_log.put(index, "not enough tokens");
-//							}
-//
-//						} else {
-//							error_log.put(index, "id mismatch");
-//						}
-//					}
-//
-//				} else {
-//
-//					handleValue(error_log, line, index, constant, "");
-//
-//				}
-//
-//			}
-//
-//
-//		} catch (IOException e) {
-//			System.out.println("IOException");
-//			System.out.println(e.getMessage());
-//			e.printStackTrace();
-//		} catch (Exception e) {
-//			System.out.println("Exception");
-//			System.out.println(e.getMessage());
-//			printAll();
-//
-//			i = 0;
-//			for (Constant constant : EnumSet.allOf(Constant.class)) {
-//				constant = backup_states[i++];
-//			}
-//
-//			for (Constant constant : EnumSet.allOf(Constant.class)) {
-//				System.out.println(constant);
-//			}
-//
-//		}
+		try (FileReader fr = new FileReader(getFileFromResourceAsString(Config.getDefaultConstantsMemoryPath()));
+				BufferedReader bw = new BufferedReader(fr)) {
 
-//        }
+			String line;
 
+//            which token is being processed
+			int index = 0;
+			for (Constant constant : EnumSet.allOf(Constant.class)) {
+
+				/*
+
+                  default_constants.txt contains less lines than sum of constants is
+
+                  breaks assignment
+                  constants use predefined values
+
+                 */
+
+				if ((line = bw.readLine()) == null) {
+					error_log.put(index, "not enough lines from this line");
+					break;
+				}
+
+				index++;
+
+				if ((line.split(" ")).length != 2) {
+
+					if (line.equals("")) {
+						error_log.put(index, "empty line");
+					} else {
+						if ((line.split(" "))[0].equals(constant.getId())) {
+
+							if (line.split(" ").length > 2) {
+
+								handleValue(error_log, line, index, constant, "too much tokens");
+
+							} else {
+								error_log.put(index, "not enough tokens");
+							}
+
+						} else {
+							error_log.put(index, "id mismatch");
+						}
+					}
+
+				} else {
+
+					handleValue(error_log, line, index, constant, "");
+
+				}
+
+			}
+
+
+		} catch (IOException e) {
+			System.out.println("IOException");
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+
+		} catch (Exception e) {
+			System.out.println("Exception");
+			System.out.println(e.getMessage());
+			printAll();
+
+			i = 0;
+			for (Constant constant : EnumSet.allOf(Constant.class)) {
+				constant = backup_states[i++];
+			}
+
+			for (Constant constant : EnumSet.allOf(Constant.class)) {
+				System.out.println(constant);
+			}
+
+		}
 
 		error_log.forEach((key, value) -> System.out.println(key + ":" + value));
 
 		return error_log;
 	}
+
 
 	/**
 	 * Assigns new value to constants if that can be done.

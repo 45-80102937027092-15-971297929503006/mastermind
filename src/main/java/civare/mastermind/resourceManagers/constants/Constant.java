@@ -1,6 +1,7 @@
 package civare.mastermind.resourceManagers.constants;
 
 import java.io.File;
+import java.util.LinkedHashMap;
 
 /**
  * jtext used for gui
@@ -65,15 +66,23 @@ public enum Constant {
 		File f = new File(Config.getConstantsFolder());
 		boolean isFolderCreated = f.mkdir();
 		System.out.println("was assets folder present: " + !isFolderCreated);
-//		System.out.println("folder created ? " + f.mkdir());
 
-//
+		LinkedHashMap<Integer, String> errorLog = ConstantsManager.initializeConstants();
+
+
+//			print errors
+		System.out.println("error log");
+		errorLog.forEach((k, v) -> System.out.println(k + " -> " + v));
+		System.out.println("error log done");
+
+
+		//
 //		ConstantsManager.initializeConstants();
 //
 //
 //		ConstantsManager.printAll();
 
-//        ConstantsManager.updateConstants(Config.getConstantsMemoryPath());
+        ConstantsManager.updateConstants(Config.getDefaultConstantsMemoryPath());
 	}
 
 	@Override
