@@ -12,9 +12,16 @@ import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.EnumSet;
+import java.util.Locale;
 import java.util.Objects;
 
 public enum Image {
+
+//    public Enum ButtonImage {
+//
+//    }
+
+
 
     VICTORY(Config.getButtonPath(), "victory"),
     DEFEAT(Config.getButtonPath(), "defeat"),
@@ -54,6 +61,34 @@ public enum Image {
     START(Config.getStartStopImagesPath(), "play"),
 
     ;
+
+    public enum ButtonImage {
+        VICTORY,
+        DEFEAT,
+        PLAY_AGAIN,
+        ;
+
+        private static final String path = Config.getButtonPath();
+        private final String name;
+
+        ButtonImage() {
+            this.name = this.name().toLowerCase();
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public static String getPath() {
+            return path;
+        }
+
+        public URL getLocation(String location) {
+            return Objects.requireNonNull(Main.class.getResource(location));
+//        return location;
+        }
+    }
+
 
     private final String path;
     private ImageIcon imageIcon;

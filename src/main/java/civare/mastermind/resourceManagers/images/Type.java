@@ -20,19 +20,20 @@ public enum Type {
 
 	private final String name;
 
+
 	Type() {
 		this.name = this.name().toLowerCase();
 	}
 
 	public String getFullPath() {
-		return "/images/" + name + "/";
+		return Config.getBackslash() + "images" + Config.getBackslash() + name + Config.getBackslash();
 	}
 
 	@Override
 	public String toString() {
 		return "Type{" +
 				"name='" + name + '\'' +
-				"full path='/images/" + name + '\'' +
+				"full path= "+ getFullPath() +
 
 
 				'}';

@@ -15,17 +15,27 @@ public class Config {
     private static final String DOT = ".";
     private static final String IMAGES_FORMAT_NAME = "png";
 
-    public static String getBasePath() {
-        return backslash + "images";
-    }
 
-    public static String getPegsPath() {
-        return  "pegs";
-    }
 
     private static final String START_STOP_IMAGES_PATH = "stop";
     private static final int PICTURE_WIDTH = 50;
     private static final int PICTURE_HEIGHT = 50;
+
+
+
+    public static String getBackslash() {
+        return backslash;
+    }
+
+    public static String getImagesFormatName() {
+        return IMAGES_FORMAT_NAME;
+    }
+
+//////////////////////////////////////////////////
+
+    public static String getBasePath() {
+        return backslash + "images";
+    }
 
     public static String getStartStopImagesPath() {
         return START_STOP_IMAGES_PATH;
@@ -36,13 +46,8 @@ public class Config {
 
         return TIME_TILES;
     }
-
-    public static String getBackslash() {
-        return backslash;
-    }
-
-    public static String getImagesFormatName() {
-        return IMAGES_FORMAT_NAME;
+    public static String getPegsPath() {
+        return  "pegs";
     }
 
     public static String getOpenedTiles() {
@@ -56,6 +61,8 @@ public class Config {
     public static String getButtonPath() {
         return BUTTON_PATH;
     }
+
+/////////////////////////////////////////
 
     public static String getDOT() {
         return DOT;
