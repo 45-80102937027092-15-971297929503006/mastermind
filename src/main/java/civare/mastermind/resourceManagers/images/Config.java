@@ -27,6 +27,10 @@ public class Config {
                     "original_images";
 
 
+    public static String getPegsPath() {
+        return backslash + "images" + backslash + "pegs";
+    }
+
     private static final String START_STOP_IMAGES_PATH = "stop";
     private static final int PICTURE_WIDTH = 50;
     private static final int PICTURE_HEIGHT = 50;

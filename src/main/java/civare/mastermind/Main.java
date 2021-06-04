@@ -4,31 +4,84 @@ import civare.mastermind.resourceManagers.constants.Config;
 import civare.mastermind.windows.index.MainFrame;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.File;
 
 public class Main {
 
     public static void main(String[] args) {
-//        todo alt images
+//
+//
+//
+////        todo alt images
+//
+//        /*
+//        check if assets file is present
+//            file is present
+//                continue
+//            file is not present
+//                check if assets are present in /resources
+//                    files are not present in assets
+//                        create default assets in /resources
+//
+//                copy from /resources to /game_assets
+//         */
+//
+//
+////        create config folder if missing
+//        File f = new File(Config.getConstantsFolder());
+//        System.out.println("folder created ? " + f.mkdir());
+//
+//        SwingUtilities.invokeLater(MainFrame::new);
 
-        /*
-        check if assets file is present
-            file is present
-                continue
-            file is not present
-                check if assets are present in /resources
-                    files are not present in assets
-                        create default assets in /resources
+        JFrame f = new JFrame();
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-                copy from /resources to /game_assets
-         */
+        //Since I'm not setting a layout manager to contentPane, it's default (BorderLayout) is used
+//            String p = "/images/resized_images/opened_tiles/-1.png";
+        //This sets the image in JFrame's content area
+//            f.getContentPane().add(new JLabel(new ImageIcon(p)));
+
+        JButton button = new JButton();
+        try {
+
+//            BufferedImage img = ImageIO.read(Objects.requireNonNull(Image.class.getResource(p)));
+//            button.setIcon(Image.BLACK.getImageIcon());
+            java.awt.Image image = Toolkit.getDefaultToolkit().getImage(Main.class.getResource("/testimg.png"));
+            if (image != null) {
+                ImageIcon icon = new ImageIcon(image);
+                button.setIcon(icon);
+            }
+
+//            button.setIcon(new ImageIcon(String.valueOf(Main.class.getResource(
+//                    "/testimg.png"
+//            ))));
+        } catch (Exception ex) {
+            System.out.println(ex);
+            System.out.println(ex.getMessage());
+        }
+        button.addActionListener(e -> {
+            System.out.println("pressed");
+        });
+        f.add(button);
+//        URL urlConfig = MyClass.class.getResource("/settings/config.ini"); //by default "src/main/resources/" is in classpath and no config needs to be changed.
+//        InputStream inputAvatar = MyClass.class.getResourceAsStream("/myAvatar.gif"); //with changes in pom.xml now "src/main/images" is counted as resource folder, and added to classpath. So we use it directly.
+        //
+//        BufferedImage img = ImageIO.read(Image.class.getResource("com/minesweeper/resources/images/resized_images/opened_tiles/-1.png"));
+//            f.add(new JButton(new ImageIcon(String.valueOf(img))));
 
 
-//        create config folder if missing
-        File f = new File(Config.getConstantsFolder());
-        System.out.println("folder created ? " + f.mkdir());
+        //This sets JFrame's icon (shown in top left corner of JFrame)
+//            f.setIconImage(new ImageIcon("com/minesweeper/resources/images/resized_images/opened_tiles/-1.png").getImage());
 
-        SwingUtilities.invokeLater(MainFrame::new);
+        f.setBounds(300, 200, 400, 300);
+        f.setVisible(true);
+
+
+//        for (Image image : EnumSet.allOf(Image.class)) {
+//            System.out.println(image);
+//        }
+
     }
 
 //    TODO extract image loading to separate thread

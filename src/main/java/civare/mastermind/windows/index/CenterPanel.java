@@ -2,6 +2,7 @@ package civare.mastermind.windows.index;
 
 import civare.mastermind.eventDrivers.Command;
 import civare.mastermind.resourceManagers.constants.Constant;
+import civare.mastermind.resourceManagers.images.Image;
 import civare.mastermind.resourceManagers.sounds.SoundsManager;
 
 import javax.swing.*;
@@ -21,6 +22,14 @@ public class CenterPanel extends JPanel implements PropertyChangeListener {
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
 
+    }
+
+    public CenterPanel() {
+        JButton btn = new JButton();
+        add(btn);
+        btn.setIcon(Image.BLACK.getImageIcon());
+
+//        add(new JButton(Image.BLACK.getImageIcon()));
     }
 
 //    private final PropertyChangeSupport support;

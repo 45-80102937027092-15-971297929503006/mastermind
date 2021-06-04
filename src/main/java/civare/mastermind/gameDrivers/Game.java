@@ -1,4 +1,4 @@
-package gameDrivers;
+package civare.mastermind.gameDrivers;
 
 import java.util.ArrayList;
 import java.util.List;

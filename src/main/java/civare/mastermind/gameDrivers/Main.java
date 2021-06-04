@@ -1,4 +1,4 @@
-package gameDrivers;
+package civare.mastermind.gameDrivers;
 
 import java.util.List;
 import java.util.TreeSet;
