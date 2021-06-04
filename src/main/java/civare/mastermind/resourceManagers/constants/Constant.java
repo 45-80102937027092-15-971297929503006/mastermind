@@ -1,8 +1,6 @@
 package civare.mastermind.resourceManagers.constants;
 
-import java.io.File;
 import java.util.EnumSet;
-import java.util.LinkedHashMap;
 
 /**
  * jtext used for gui
@@ -31,7 +29,7 @@ public enum Constant {
 	private static final String initValue = ConstantCounterManager.initValue;
 	private final String id;
 	private Object value;
-	private Object defaultValue;
+	private final Object defaultValue;
 //	private Object initValue;
 
 	Constant(Object value) {
@@ -51,10 +49,6 @@ public enum Constant {
 
 	}
 
-	public Object getDefaultValue() {
-		return defaultValue;
-	}
-
 	public static int getNumOfConstants() {
 		return ConstantCounterManager.getNumOfConstants();
 	}
@@ -63,46 +57,8 @@ public enum Constant {
 		return initValue;
 	}
 
-	public static void main(String[] args) {
-//        todo alt images
-
-        /*
-        check if assets file is present
-            file is not present
-                check if assets are present in /resources
-                    files are not present in assets
-                        create default assets in /resources
-
-                copy from /resources to /game_assets
-         */
-
-
-//        create config folder if missing
-		File f = new File(Config.getConstantsFolder());
-		boolean isFolderCreated = f.mkdir();
-		System.out.println("was assets folder present: " + !isFolderCreated);
-
-		File configFile = new File(Config.getDefaultConstantsMemoryPath());
-		System.out.println("is config file present: " + configFile.exists());
-
-		try {
-			LinkedHashMap<Integer, String> errorLog = ConstantsManager.initializeConstants();
-
-		} catch (IllegalArgumentException e) {
-//			file not found
-			System.out.println(e.getMessage());
-
-		}
-
-		System.out.println("main");
-		ConstantsManager.printAll();
-
-        ConstantsManager.updateConstants(Config.getDefaultConstantsMemoryPath());
-
-//		ConstantsManager.restartConstants();
-//
-//		ConstantsManager.printAll();
-
+	public Object getDefaultValue() {
+		return defaultValue;
 	}
 
 	@Override

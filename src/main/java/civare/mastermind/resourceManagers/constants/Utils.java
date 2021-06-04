@@ -5,7 +5,8 @@ package civare.mastermind.resourceManagers.constants;
 
 import civare.mastermind.Main;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 
@@ -28,34 +29,6 @@ public class Utils {
 
 	}
 
-	public static class CopyFileVisitor extends SimpleFileVisitor<Path> {
-		private final Path targetPath;
-		private Path sourcePath = null;
-		public CopyFileVisitor(Path targetPath) {
-			this.targetPath = targetPath;
-		}
-
-		@Override
-		public FileVisitResult preVisitDirectory(final Path dir,
-												 final BasicFileAttributes attrs) throws IOException {
-			if (sourcePath == null) {
-				sourcePath = dir;
-			} else {
-				Files.createDirectories(targetPath.resolve(sourcePath
-						.relativize(dir)));
-			}
-			return FileVisitResult.CONTINUE;
-		}
-
-		@Override
-		public FileVisitResult visitFile(final Path file,
-										 final BasicFileAttributes attrs) throws IOException {
-			Files.copy(file,
-					targetPath.resolve(sourcePath.relativize(file)));
-			return FileVisitResult.CONTINUE;
-		}
-	}
-
 	/**
 	 * creates file if not present
 	 * checks if source file is not present and returns false
@@ -64,8 +37,8 @@ public class Utils {
 	 * @param targetPath
 	 */
 	public static boolean copyContentOfFolder(Path sourcePath, Path targetPath) {
-		if (! sourcePath.toFile().exists()) {
-			System.out.println("file "+ sourcePath+" does not exist");
+		if (!sourcePath.toFile().exists()) {
+			System.out.println("file " + sourcePath + " does not exist");
 			return false;
 		}
 
@@ -102,6 +75,35 @@ public class Utils {
 		final Path targetPath = Paths.get("C:/b");
 		copyContentOfFolder(sourcePath, targetPath);
 
+	}
+
+	public static class CopyFileVisitor extends SimpleFileVisitor<Path> {
+		private final Path targetPath;
+		private Path sourcePath = null;
+
+		public CopyFileVisitor(Path targetPath) {
+			this.targetPath = targetPath;
+		}
+
+		@Override
+		public FileVisitResult preVisitDirectory(final Path dir,
+												 final BasicFileAttributes attrs) throws IOException {
+			if (sourcePath == null) {
+				sourcePath = dir;
+			} else {
+				Files.createDirectories(targetPath.resolve(sourcePath
+						.relativize(dir)));
+			}
+			return FileVisitResult.CONTINUE;
+		}
+
+		@Override
+		public FileVisitResult visitFile(final Path file,
+										 final BasicFileAttributes attrs) throws IOException {
+			Files.copy(file,
+					targetPath.resolve(sourcePath.relativize(file)));
+			return FileVisitResult.CONTINUE;
+		}
 	}
 }
 
