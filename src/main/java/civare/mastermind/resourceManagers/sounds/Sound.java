@@ -19,11 +19,11 @@ public enum Sound {
 
     private static final String separator = "/";
     private static final String REDUCED_DEFAULT_PATH =
-            separator +
-                    "sounds" +
-                    separator +
-                    "defeat_sounds" +
-                    separator;
+            separator ;
+//                    "sounds" +
+//                    separator +
+//                    "defeat_sounds" +
+//                    separator;
     private static final String EXTENSION = ".wav";
 
     private static Sound currentSound = getRandomSound();

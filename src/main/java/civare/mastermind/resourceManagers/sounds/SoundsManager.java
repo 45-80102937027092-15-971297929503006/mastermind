@@ -46,6 +46,8 @@ public class SoundsManager {
         } catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
             e.printStackTrace();
         } catch (Exception e) {
+            System.out.println(e);
+            System.out.println(e.getMessage());
             System.out.println("error while playing sound");
         }
 

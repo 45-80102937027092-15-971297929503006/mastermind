@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.EnumSet;
 import java.util.Objects;
 
@@ -56,6 +57,10 @@ public enum Image {
     private ImageIcon imageIcon;
     private ImageIcon defaultImageIcon;
 
+    public URL getLocation(String location) {
+        return Objects.requireNonNull(Main.class.getResource(location));
+//        return location;
+    }
 
     Image(String folder, String name) {
         this.path =
@@ -67,23 +72,9 @@ public enum Image {
 //        this.imageIcon = ImageManager.loadImage(this.path);
 
         try {
-            imageIcon = new ImageIcon(String.valueOf(getClass().getResourceAsStream(
-               "/images/pegs/black.png"
-            )));
 
-            defaultImageIcon = new ImageIcon(String.valueOf(getClass().getResourceAsStream(
-                    "images/pegs/black.png"
-            )));
-
-//            this.imageIcon = new ImageIcon(ImageIO.read(Objects.requireNonNull(Main.class.getResource(
-//                    Config.getReducedCustomImagesPath() + Config.getBackslash() +
-//                            folder + Config.getBackslash() +
-//                            name + Config.getDOT() + Config.getImagesFormatName()))));
-//
-//            defaultImageIcon = new ImageIcon(ImageIO.read(Objects.requireNonNull(Main.class.getResource(
-//                    Config.getReducedOriginalImagesPath() + Config.getBackslash() +
-//                            folder + Config.getBackslash() +
-//                            name + Config.getDOT() + Config.getImagesFormatName()))));
+            imageIcon = new ImageIcon(getLocation("/errors.png"));
+            defaultImageIcon = new ImageIcon(getLocation("/errors.png"));
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -95,55 +86,27 @@ public enum Image {
     }
 
     public static void main(String[] args) {
-            JFrame f = new JFrame();
-            f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JFrame f = new JFrame();
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-            //Since I'm not setting a layout manager to contentPane, it's default (BorderLayout) is used
-//            String p = "/images/resized_images/opened_tiles/-1.png";
-            //This sets the image in JFrame's content area
-//            f.getContentPane().add(new JLabel(new ImageIcon(p)));
+        JButton button = new JButton("alt text");
+//        try {
+//
+//            button.setIcon(new ImageIcon(Main.class.getResource("/errors.png")));
+//
+//        } catch (Exception ex) {
+//            System.out.println(ex);
+//            System.out.println(ex.getMessage());
+//        }
+        button.setIcon(BLUE.getImageIcon());
 
-        JButton button = new JButton();
-        try {
-
-//            BufferedImage img = ImageIO.read(Objects.requireNonNull(Image.class.getResource(p)));
-//            button.setIcon(Image.BLACK.getImageIcon());
-            button.setIcon(new ImageIcon(Main.class.getResource("/testimg.png")));
-
-//            java.awt.Image image = Toolkit.getDefaultToolkit().getImage(Main.class.getResource("/testimg.png"));
-//            if (image != null) {
-//                ImageIcon icon = new ImageIcon(image);
-//                button.setIcon(icon);
-//            }
-
-//            button.setIcon(new ImageIcon(String.valueOf(Main.class.getResource(
-//                    "/testimg.png"
-//            ))));
-        } catch (Exception ex) {
-            System.out.println(ex);
-            System.out.println(ex.getMessage());
-        }
         button.addActionListener(e -> {
             System.out.println("pressed");
         });
         f.add(button);
-//        URL urlConfig = MyClass.class.getResource("/settings/config.ini"); //by default "src/main/resources/" is in classpath and no config needs to be changed.
-//        InputStream inputAvatar = MyClass.class.getResourceAsStream("/myAvatar.gif"); //with changes in pom.xml now "src/main/images" is counted as resource folder, and added to classpath. So we use it directly.
-        //
-//        BufferedImage img = ImageIO.read(Image.class.getResource("com/minesweeper/resources/images/resized_images/opened_tiles/-1.png"));
-//            f.add(new JButton(new ImageIcon(String.valueOf(img))));
 
-
-            //This sets JFrame's icon (shown in top left corner of JFrame)
-//            f.setIconImage(new ImageIcon("com/minesweeper/resources/images/resized_images/opened_tiles/-1.png").getImage());
-
-            f.setBounds(300, 200, 400, 300);
-            f.setVisible(true);
-
-
-//        for (Image image : EnumSet.allOf(Image.class)) {
-//            System.out.println(image);
-//        }
+        f.setBounds(300, 200, 400, 300);
+        f.setVisible(true);
     }
 
     public String getPath() {
@@ -164,8 +127,11 @@ public enum Image {
 
     @Override
     public String toString() {
-        return this.name() + " {" +
-                "pathID='" + path + '\'' +
+        return
+                this.name() +
+                        " {" +
+                "pathID='" +
+                        path + '\'' +
                 '}';
     }
 

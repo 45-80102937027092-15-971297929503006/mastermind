@@ -114,7 +114,7 @@ public enum Constant {
 	}
 
 	private static class ConstantCounterManager {
-		private static final String initValue = "init value";
+		private static final String initValue = "init_value";
 
 		private static int numOfConstants = 0;
 
