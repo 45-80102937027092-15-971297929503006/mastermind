@@ -42,24 +42,16 @@ public class Main {
         //This sets the image in JFrame's content area
 //            f.getContentPane().add(new JLabel(new ImageIcon(p)));
 
-        JButton button = new JButton();
+        JButton button = new JButton("faakflfkl");
         try {
 
-//            BufferedImage img = ImageIO.read(Objects.requireNonNull(Image.class.getResource(p)));
-//            button.setIcon(Image.BLACK.getImageIcon());
-            java.awt.Image image = Toolkit.getDefaultToolkit().getImage(Main.class.getResource("/testimg.png"));
-            if (image != null) {
-                ImageIcon icon = new ImageIcon(image);
-                button.setIcon(icon);
-            }
+            button.setIcon(new ImageIcon(Main.class.getResource("/errors.png")));
 
-//            button.setIcon(new ImageIcon(String.valueOf(Main.class.getResource(
-//                    "/testimg.png"
-//            ))));
         } catch (Exception ex) {
             System.out.println(ex);
             System.out.println(ex.getMessage());
         }
+
         button.addActionListener(e -> {
             System.out.println("pressed");
         });
@@ -76,12 +68,6 @@ public class Main {
 
         f.setBounds(300, 200, 400, 300);
         f.setVisible(true);
-
-
-//        for (Image image : EnumSet.allOf(Image.class)) {
-//            System.out.println(image);
-//        }
-
     }
 
 //    TODO extract image loading to separate thread

@@ -108,11 +108,13 @@ public enum Image {
 
 //            BufferedImage img = ImageIO.read(Objects.requireNonNull(Image.class.getResource(p)));
 //            button.setIcon(Image.BLACK.getImageIcon());
-            java.awt.Image image = Toolkit.getDefaultToolkit().getImage(Main.class.getResource("/testimg.png"));
-            if (image != null) {
-                ImageIcon icon = new ImageIcon(image);
-                button.setIcon(icon);
-            }
+            button.setIcon(new ImageIcon(Main.class.getResource("/testimg.png")));
+
+//            java.awt.Image image = Toolkit.getDefaultToolkit().getImage(Main.class.getResource("/testimg.png"));
+//            if (image != null) {
+//                ImageIcon icon = new ImageIcon(image);
+//                button.setIcon(icon);
+//            }
 
 //            button.setIcon(new ImageIcon(String.valueOf(Main.class.getResource(
 //                    "/testimg.png"

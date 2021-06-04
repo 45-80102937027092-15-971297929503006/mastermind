@@ -95,16 +95,38 @@ public class TimerElement extends JPanel implements PropertyChangeListener {
 
     private static void updateImage(JLabel tile, int digit) {
         switch (digit) {
-            case 0 -> tile.setIcon(Image.T_ZERO.getImageIcon());
-            case 1 -> tile.setIcon(Image.T_ONE.getImageIcon());
-            case 2 -> tile.setIcon(Image.T_TWO.getImageIcon());
-            case 3 -> tile.setIcon(Image.T_THREE.getImageIcon());
-            case 4 -> tile.setIcon(Image.T_FOUR.getImageIcon());
-            case 5 -> tile.setIcon(Image.T_FIVE.getImageIcon());
-            case 6 -> tile.setIcon(Image.T_SIX.getImageIcon());
-            case 7 -> tile.setIcon(Image.T_SEVEN.getImageIcon());
-            case 8 -> tile.setIcon(Image.T_EIGHT.getImageIcon());
-            case 9 -> tile.setIcon(Image.T_NINE.getImageIcon());
+
+
+            case 0 : { tile.setIcon(Image.T_ZERO.getImageIcon());
+            break;
+            }
+            case 1 : { tile.setIcon(Image.T_ONE.getImageIcon());
+            break;
+            }
+            case 2 : { tile.setIcon(Image.T_TWO.getImageIcon());
+            break;
+            }
+            case 3 : { tile.setIcon(Image.T_THREE.getImageIcon());
+            break;
+            }
+            case 4 : { tile.setIcon(Image.T_FOUR.getImageIcon());
+            break;
+            }
+            case 5 : { tile.setIcon(Image.T_FIVE.getImageIcon());
+            break;
+            }
+            case 6 : { tile.setIcon(Image.T_SIX.getImageIcon());
+            break;
+            }
+            case 7 : { tile.setIcon(Image.T_SEVEN.getImageIcon());
+            break;
+            }
+            case 8 : { tile.setIcon(Image.T_EIGHT.getImageIcon());
+            break;
+            }
+            case 9 : { tile.setIcon(Image.T_NINE.getImageIcon());
+            break;
+            }
         }
     }
 

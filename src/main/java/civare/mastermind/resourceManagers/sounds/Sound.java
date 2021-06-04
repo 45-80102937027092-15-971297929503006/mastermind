@@ -2,6 +2,7 @@ package civare.mastermind.resourceManagers.sounds;
 
 //    TODO ability to add new sounds
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -12,7 +13,7 @@ public enum Sound {
     SOUND_PATH_2("i");
 
 
-    private static final List<Sound> VALUES = List.of(values());
+    private static final List<Sound> VALUES = Arrays.asList(values());
     private static final int SIZE = VALUES.size();
     private static final Random RANDOM = new Random();
 
