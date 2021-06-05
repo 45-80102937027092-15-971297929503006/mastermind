@@ -3,7 +3,7 @@ package civare.mastermind.windows.index;
 import civare.mastermind.eventDrivers.Command;
 import civare.mastermind.resourceManagers.constants.Constant;
 import civare.mastermind.resourceManagers.constants.ConstantsManager;
-import civare.mastermind.resourceManagers.images.Image;
+import civare.mastermind.resourceManagers.images.types.Time;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,24 +16,24 @@ import java.util.concurrent.TimeUnit;
 
 public class TimerElement extends JPanel implements PropertyChangeListener {
 
-    private final long startTime = 1;
-    private final Timer timer;
-    private final JLabel mostSigMinDigitLabel;
-    private final JLabel leastSigMinDigitLabel;
-    private final JLabel mostSigSecDigitLabel;
-    private final JLabel leastSigSecDigitLabel;
-    private long time;
+	private final long startTime = 1;
+	private final Timer timer;
+	private final JLabel mostSigMinDigitLabel;
+	private final JLabel leastSigMinDigitLabel;
+	private final JLabel mostSigSecDigitLabel;
+	private final JLabel leastSigSecDigitLabel;
+	private long time;
 
-    private int mostSigMinDigit;
-    private int leastSigMinDigit;
-    private int mostSigSecDigit;
-    private int leastSigSecDigit;
+	private int mostSigMinDigit;
+	private int leastSigMinDigit;
+	private int mostSigSecDigit;
+	private int leastSigSecDigit;
 
-    private boolean isTicking = false;
+	private boolean isTicking = false;
 
-    public TimerElement() {
-        setBorder(BorderFactory.createLineBorder(Color.black));
-        setLayout(new FlowLayout());
+	public TimerElement() {
+		setBorder(BorderFactory.createLineBorder(Color.black));
+		setLayout(new FlowLayout());
 
 
 //        try {
@@ -42,184 +42,194 @@ public class TimerElement extends JPanel implements PropertyChangeListener {
 //            System.out.println("no init image");
 //        }
 
-        mostSigMinDigitLabel = new JLabel("zeroImage");
-        add(mostSigMinDigitLabel);
+		mostSigMinDigitLabel = new JLabel("zeroImage");
+		add(mostSigMinDigitLabel);
 
-        leastSigMinDigitLabel = new JLabel("zeroImage");
-        add(leastSigMinDigitLabel);
+		leastSigMinDigitLabel = new JLabel("zeroImage");
+		add(leastSigMinDigitLabel);
 
-        JLabel separator = new JLabel(":");
-        add(separator);
+		JLabel separator = new JLabel(":");
+		add(separator);
 
-        mostSigSecDigitLabel = new JLabel("zeroImage");
-        add(mostSigSecDigitLabel);
+		mostSigSecDigitLabel = new JLabel("zeroImage");
+		add(mostSigSecDigitLabel);
 
-        leastSigSecDigitLabel = new JLabel("zeroImage");
-        add(leastSigSecDigitLabel);
-
-
-        ActionListener taskPerformer = evt -> {
-
-            time += 1000;
+		leastSigSecDigitLabel = new JLabel("zeroImage");
+		add(leastSigSecDigitLabel);
 
 
-            int seconds = (int) (TimeUnit.MILLISECONDS.toSeconds(time)
-                    - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(time)));
+		ActionListener taskPerformer = evt -> {
 
-            int minutes = (int) TimeUnit.MILLISECONDS.toMinutes(time);
-
-            mostSigMinDigit = minutes / 10;
-            leastSigMinDigit = minutes % 10;
-
-            mostSigSecDigit = seconds / 10;
-            leastSigSecDigit = seconds % 10;
-
-            updateImage(mostSigMinDigitLabel, mostSigMinDigit);
-            updateImage(leastSigMinDigitLabel, leastSigMinDigit);
-            updateImage(mostSigSecDigitLabel, mostSigSecDigit);
-            updateImage(leastSigSecDigitLabel, leastSigSecDigit);
-
-            if (minutes == 60) {
-                System.out.println("end");
-                System.out.println("handle this in TimerElement action listener");
-                System.exit(-1);
-            }
+			time += 1000;
 
 
-        };
-        int delay = 1000;
-        timer = new Timer(delay, taskPerformer);
+			int seconds = (int) (TimeUnit.MILLISECONDS.toSeconds(time)
+					- TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(time)));
 
-        time = startTime;
-    }
+			int minutes = (int) TimeUnit.MILLISECONDS.toMinutes(time);
 
-    private static void updateImage(JLabel tile, int digit) {
-        switch (digit) {
+			mostSigMinDigit = minutes / 10;
+			leastSigMinDigit = minutes % 10;
+
+			mostSigSecDigit = seconds / 10;
+			leastSigSecDigit = seconds % 10;
+
+			updateImage(mostSigMinDigitLabel, mostSigMinDigit);
+			updateImage(leastSigMinDigitLabel, leastSigMinDigit);
+			updateImage(mostSigSecDigitLabel, mostSigSecDigit);
+			updateImage(leastSigSecDigitLabel, leastSigSecDigit);
+
+			if (minutes == 60) {
+				System.out.println("end");
+				System.out.println("handle this in TimerElement action listener");
+				System.exit(-1);
+			}
 
 
-            case 0 : { tile.setIcon(Image.T_ZERO.getImageIcon());
-            break;
-            }
-            case 1 : { tile.setIcon(Image.T_ONE.getImageIcon());
-            break;
-            }
-            case 2 : { tile.setIcon(Image.T_TWO.getImageIcon());
-            break;
-            }
-            case 3 : { tile.setIcon(Image.T_THREE.getImageIcon());
-            break;
-            }
-            case 4 : { tile.setIcon(Image.T_FOUR.getImageIcon());
-            break;
-            }
-            case 5 : { tile.setIcon(Image.T_FIVE.getImageIcon());
-            break;
-            }
-            case 6 : { tile.setIcon(Image.T_SIX.getImageIcon());
-            break;
-            }
-            case 7 : { tile.setIcon(Image.T_SEVEN.getImageIcon());
-            break;
-            }
-            case 8 : { tile.setIcon(Image.T_EIGHT.getImageIcon());
-            break;
-            }
-            case 9 : { tile.setIcon(Image.T_NINE.getImageIcon());
-            break;
-            }
-        }
-    }
+		};
+		int delay = 1000;
+		timer = new Timer(delay, taskPerformer);
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(TestFrame::new);
-    }
+		time = startTime;
+	}
 
-    public boolean isTicking() {
-        return isTicking;
-    }
+	private static void updateImage(JLabel tile, int digit) {
+		switch (digit) {
 
-    public void startOrContinueTimer() {
+
+			case 0: {
+				tile.setIcon(Time.T_0.getImageIcon());
+				break;
+			}
+			case 1: {
+				tile.setIcon(Time.T_1.getImageIcon());
+				break;
+			}
+			case 2: {
+				tile.setIcon(Time.T_2.getImageIcon());
+				break;
+			}
+			case 3: {
+				tile.setIcon(Time.T_3.getImageIcon());
+				break;
+			}
+			case 4: {
+				tile.setIcon(Time.T_4.getImageIcon());
+				break;
+			}
+			case 5: {
+				tile.setIcon(Time.T_5.getImageIcon());
+				break;
+			}
+			case 6: {
+				tile.setIcon(Time.T_6.getImageIcon());
+				break;
+			}
+			case 7: {
+				tile.setIcon(Time.T_7.getImageIcon());
+				break;
+			}
+			case 8: {
+				tile.setIcon(Time.T_8.getImageIcon());
+				break;
+			}
+			case 9: {
+				tile.setIcon(Time.T_9.getImageIcon());
+				break;
+			}
+		}
+	}
+
+	public static void main(String[] args) {
+		SwingUtilities.invokeLater(TestFrame::new);
+	}
+
+	public boolean isTicking() {
+		return isTicking;
+	}
+
+	public void startOrContinueTimer() {
 
 //        if (!isStarted) {
-        timer.start();
-        isTicking = true;
+		timer.start();
+		isTicking = true;
 
 
 //            isStarted = true;
 //        } else {
 //            System.out.println("timer already started");
 //        }
-    }
+	}
 
-    public void stopTimer() {
+	public void stopTimer() {
 
-        timer.stop();
+		timer.stop();
 //        isTicking = false;
-    }
+	}
 
 
-    public void restartTimer() {
+	public void restartTimer() {
 
-        timer.stop();
+		timer.stop();
 
-        time = startTime;
+		time = startTime;
 
-        isTicking = false;
+		isTicking = false;
 
-        mostSigMinDigitLabel.setIcon(Image.T_ZERO.getImageIcon());
-        leastSigMinDigitLabel.setIcon(Image.T_ZERO.getImageIcon());
-        mostSigSecDigitLabel.setIcon(Image.T_ZERO.getImageIcon());
-        leastSigSecDigitLabel.setIcon(Image.T_ZERO.getImageIcon());
+		mostSigMinDigitLabel.setIcon(Time.T_0.getImageIcon());
+		leastSigMinDigitLabel.setIcon(Time.T_0.getImageIcon());
+		mostSigSecDigitLabel.setIcon(Time.T_0.getImageIcon());
+		leastSigSecDigitLabel.setIcon(Time.T_0.getImageIcon());
 
-    }
+	}
 
-    public String getTime() {
-        return String.valueOf(mostSigMinDigit + leastSigMinDigit + mostSigSecDigit + leastSigSecDigit);
-    }
-
-
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-        if (evt.getNewValue() == Command.RESTART_TIMER) {
-            System.out.println("property changed: restarting timer");
-            restartTimer();
-        } else if (evt.getNewValue() == Command.STOP_TIMER) {
-            System.out.println("property changed: stopping timer");
-            stopTimer();
-        } else {
-            System.out.println("unsupported command in timer element");
-            System.out.println(evt);
-            System.out.println();
-        }
-    }
-
-    private static class TestFrame extends JFrame {
-        TestFrame() {
-            ConstantsManager.initializeConstants();
-            setVisible(true);
-            setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-            setLayout(new FlowLayout());
-
-            setSize(((Double) Constant.WIDTH.getValue()).intValue(), ((Double) Constant.HEIGHT.getValue()).intValue());
-            setLocation((Integer) Constant.LOCATION_X.getValue(), (Integer) Constant.LOCATION_Y.getValue());
-
-            TimerElement timer = new TimerElement();
-
-            add(timer);
-
-            JButton startButton = new JButton("start/continue");
-            startButton.addActionListener(e -> timer.startOrContinueTimer());
-            add(startButton);
+	public String getTime() {
+		return String.valueOf(mostSigMinDigit + leastSigMinDigit + mostSigSecDigit + leastSigSecDigit);
+	}
 
 
-            JButton stop = new JButton("stop");
-            stop.addActionListener(e -> timer.stopTimer());
-            add(stop);
+	@Override
+	public void propertyChange(PropertyChangeEvent evt) {
+		if (evt.getNewValue() == Command.RESTART_TIMER) {
+			System.out.println("property changed: restarting timer");
+			restartTimer();
+		} else if (evt.getNewValue() == Command.STOP_TIMER) {
+			System.out.println("property changed: stopping timer");
+			stopTimer();
+		} else {
+			System.out.println("unsupported command in timer element");
+			System.out.println(evt);
+			System.out.println();
+		}
+	}
 
-            JButton restart = new JButton("restart");
-            restart.addActionListener(e -> timer.restartTimer());
-            add(restart);
+	private static class TestFrame extends JFrame {
+		TestFrame() {
+			ConstantsManager.initializeConstants();
+			setVisible(true);
+			setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+			setLayout(new FlowLayout());
 
-        }
-    }
+			setSize(((Double) Constant.WIDTH.getValue()).intValue(), ((Double) Constant.HEIGHT.getValue()).intValue());
+			setLocation((Integer) Constant.LOCATION_X.getValue(), (Integer) Constant.LOCATION_Y.getValue());
+
+			TimerElement timer = new TimerElement();
+
+			add(timer);
+
+			JButton startButton = new JButton("start/continue");
+			startButton.addActionListener(e -> timer.startOrContinueTimer());
+			add(startButton);
+
+
+			JButton stop = new JButton("stop");
+			stop.addActionListener(e -> timer.stopTimer());
+			add(stop);
+
+			JButton restart = new JButton("restart");
+			restart.addActionListener(e -> timer.restartTimer());
+			add(restart);
+
+		}
+	}
 }

@@ -1,36 +1,27 @@
 package civare.mastermind.windows.index;
 
-import civare.mastermind.eventDrivers.Command;
-import civare.mastermind.resourceManagers.constants.Constant;
-import civare.mastermind.resourceManagers.images.Image;
-import civare.mastermind.resourceManagers.sounds.SoundsManager;
+import civare.mastermind.resourceManagers.images.types.Pegs;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 
 //    TODO
 //      enable/ disable left click operations while under right click element (flag, question mark)
 
 public class CenterPanel extends JPanel implements PropertyChangeListener {
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-
-    }
-
-    public CenterPanel() {
-        JButton btn = new JButton();
-        add(btn);
-        btn.setIcon(Image.BLACK.getImageIcon());
+	public CenterPanel() {
+		JButton btn = new JButton();
+		add(btn);
+		btn.setIcon(Pegs.BLACK.getImageIcon());
 
 //        add(new JButton(Image.BLACK.getImageIcon()));
-    }
+	}
+
+	@Override
+	public void propertyChange(PropertyChangeEvent evt) {
+
+	}
 
 //    private final PropertyChangeSupport support;
 //

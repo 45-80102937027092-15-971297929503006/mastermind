@@ -1,16 +1,13 @@
 package civare.mastermind;
 
-import civare.mastermind.resourceManagers.constants.Config;
 import civare.mastermind.windows.index.MainFrame;
 
 import javax.swing.*;
-import java.awt.*;
-import java.io.File;
 
 public class Main {
 //    Path path = Paths.get("foo", "bar", "baz.txt");
 
-    public static void main(String[] args) {
+	public static void main(String[] args) {
 //
 //
 //
@@ -33,7 +30,7 @@ public class Main {
 //        File f = new File(Config.getConstantsFolder());
 //        System.out.println("folder created ? " + f.mkdir());
 //
-        SwingUtilities.invokeLater(MainFrame::new);
+		SwingUtilities.invokeLater(MainFrame::new);
 
 //        JFrame f = new JFrame();
 //        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -75,7 +72,7 @@ public class Main {
 //    TODO gui style
 //    TODO change logs to json instead of ad-hoc solution
 
-    //    FIXME
+		//    FIXME
 //          start/ stop button not working
 //          when pressed "restart all settings" images in settings window are not restarted automatically
 //          fix position on screen of mainframe and settingswindow
@@ -89,4 +86,5 @@ public class Main {
 //          statistics graph
 
 
-}}
+	}
+}

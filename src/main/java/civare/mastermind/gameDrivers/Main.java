@@ -9,13 +9,10 @@ public class Main {
 	}
 
 	/**
-	 *
-	 *
-	 *
 	 * @return true if user_1 won else false
 	 * TODO move finalState to somewhere else
 	 */
-	public boolean checkGameState(List<Object> pegs, List<Object> finalState)  {
+	public boolean checkGameState(List<Object> pegs, List<Object> finalState) {
 		/*
 		 *  2 - in the right place
 		 *  1 - right but in the wrong place

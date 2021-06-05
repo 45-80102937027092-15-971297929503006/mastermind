@@ -4,14 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
-	private int codeLength = 4; // 4, 6 or 8
-	private int numOfRows = 10; // 6, 8, 10 or 12
-	private int numOfColors = 6;
-	private List<Object> finalState;
-
-	public static void main(String[] args) {
-
-	}
+	private final int codeLength = 4; // 4, 6 or 8
+	private final int numOfRows = 10; // 6, 8, 10 or 12
+	private final int numOfColors = 6;
+	private final List<Object> finalState;
 
 	public Game() {
 //        init game
@@ -23,6 +19,10 @@ public class Game {
 		}
 
 		//
+	}
+
+	public static void main(String[] args) {
+
 	}
 
 

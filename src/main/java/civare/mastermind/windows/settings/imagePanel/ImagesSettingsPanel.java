@@ -1,6 +1,5 @@
 package civare.mastermind.windows.settings.imagePanel;
 
-import civare.mastermind.windows.settings.elements.imagePicker.ImagePickerElement;
 import civare.mastermind.windows.settings.elements.reset.RestartDefaultButton;
 
 import javax.swing.*;
@@ -9,64 +8,64 @@ import java.awt.event.KeyEvent;
 
 public class ImagesSettingsPanel extends JPanel {
 
-    public ImagesSettingsPanel() {
-        setLayout(new GridLayout(1, 1));
+	public ImagesSettingsPanel() {
+		setLayout(new GridLayout(1, 1));
 
-        JTabbedPane tabbedPane = new JTabbedPane();
-
-
-        tabbedPane.addTab("button", new ButtonPanel());
-        tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
+		JTabbedPane tabbedPane = new JTabbedPane();
 
 
-        tabbedPane.addTab("closed tiles", new ClosedTilePanel());
-        tabbedPane.setMnemonicAt(1, KeyEvent.VK_2);
+		tabbedPane.addTab("button", new ButtonPanel());
+		tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
 
 
-        tabbedPane.addTab("opened tiles", new OpenedTilePanel());
-        tabbedPane.setMnemonicAt(2, KeyEvent.VK_3);
+		tabbedPane.addTab("closed tiles", new ClosedTilePanel());
+		tabbedPane.setMnemonicAt(1, KeyEvent.VK_2);
 
-        tabbedPane.addTab("time", new TimePanel());
-        tabbedPane.setMnemonicAt(3, KeyEvent.VK_4);
 
-        //Add the tabbed pane to this panel.
-        add(tabbedPane);
+		tabbedPane.addTab("opened tiles", new OpenedTilePanel());
+		tabbedPane.setMnemonicAt(2, KeyEvent.VK_3);
+
+		tabbedPane.addTab("time", new TimePanel());
+		tabbedPane.setMnemonicAt(3, KeyEvent.VK_4);
+
+		//Add the tabbed pane to this panel.
+		add(tabbedPane);
 //        add(new RestartDefaultButton());
 
 
-        //The following line enables to use scrolling tabs.
-        tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
+		//The following line enables to use scrolling tabs.
+		tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 
 
-    }
+	}
 
-    private static class ButtonPanel extends JPanel {
-        private ButtonPanel() {
+	private static class ButtonPanel extends JPanel {
+		private ButtonPanel() {
 
 //            add(new ImagePickerElement(Image.VICTORY));
 //            add(new ImagePickerElement(Image.PLAY_AGAIN));
 //            add(new ImagePickerElement(Image.DEFEAT));
 
-            add(new RestartDefaultButton());
+			add(new RestartDefaultButton());
 
-        }
-    }
+		}
+	}
 
-    private static class ClosedTilePanel extends JPanel {
-        private ClosedTilePanel() {
+	private static class ClosedTilePanel extends JPanel {
+		private ClosedTilePanel() {
 
 
 //            add(new ImagePickerElement(Image.CLOSED_CELL));
 //            add(new ImagePickerElement(Image.FLAG));
 //            add(new ImagePickerElement(Image.NOT_SURE));
 
-            add(new RestartDefaultButton());
+			add(new RestartDefaultButton());
 
-        }
-    }
+		}
+	}
 
-    private class OpenedTilePanel extends JPanel {
-        private OpenedTilePanel() {
+	private class OpenedTilePanel extends JPanel {
+		private OpenedTilePanel() {
 
 //            add(new ImagePickerElement(Image.MINE));
 //            add(new ImagePickerElement(Image.ZERO));
@@ -82,15 +81,15 @@ public class ImagesSettingsPanel extends JPanel {
 //
 //            add(new ImagePickerElement(Image.EIGHT));
 
-            add(new RestartDefaultButton());
+			add(new RestartDefaultButton());
 
-        }
-    }
+		}
+	}
 
-    private class TimePanel extends JPanel {
-        private TimePanel() {
+	private class TimePanel extends JPanel {
+		private TimePanel() {
 
-            add(new JLabel("TODO"));
+			add(new JLabel("TODO"));
 //            add(new ImagePickerElement("change 0 image"));
 //            add(new ImagePickerElement("change 1 image"));
 //            add(new ImagePickerElement("change 2 image"));
@@ -101,8 +100,8 @@ public class ImagesSettingsPanel extends JPanel {
 //            add(new ImagePickerElement("change 7 image"));
 //            add(new ImagePickerElement("change 8 image"));
 //            add(new ImagePickerElement("change 9 image"));
-            add(new RestartDefaultButton());
+			add(new RestartDefaultButton());
 
-        }
-    }
+		}
+	}
 }

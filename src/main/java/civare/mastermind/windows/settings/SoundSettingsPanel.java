@@ -6,11 +6,11 @@ import javax.swing.*;
 
 public class SoundSettingsPanel extends JPanel {
 
-    public SoundSettingsPanel() {
+	public SoundSettingsPanel() {
 
-        add(new JButton("todo"));
-        add(new RestartDefaultButton());
+		add(new JButton("todo"));
+		add(new RestartDefaultButton());
 
-    }
+	}
 
 }

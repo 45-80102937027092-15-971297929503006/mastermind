@@ -1,16 +1,15 @@
 package civare.mastermind.windows.settings;
 
 import civare.mastermind.resourceManagers.constants.Constant;
-import civare.mastermind.windows.settings.elements.textField.TextFieldElement;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class GeneralSettingsPanel extends JPanel {
 
-    public GeneralSettingsPanel() {
+	public GeneralSettingsPanel() {
 
-        setLayout(new GridLayout(0, 1));
+		setLayout(new GridLayout(0, 1));
 
 //        add(new TextFieldElement(Constant.NUMBER_OF_ROWS, "number of rows"));
 //        add(new TextFieldElement(Constant.NUMBER_OF_COLUMNS, "number of columns"));
@@ -20,65 +19,65 @@ public class GeneralSettingsPanel extends JPanel {
 //TODO
 //        add(new RestartCurrentButton(Constant.NUMBER_OF_ROWS, Constant.NUMBER_OF_COLUMNS, Constant.NUMBER_OF_MINES));
 
-        add(new TogglePanel("is sound active", Constant.IS_SOUND_ACTIVE));
+		add(new TogglePanel("is sound active", Constant.IS_SOUND_ACTIVE));
 
 
-    }
+	}
 
-    private static class TogglePanel extends JPanel {
+	private static class TogglePanel extends JPanel {
 
-        public TogglePanel(String label, Constant constant) {
+		public TogglePanel(String label, Constant constant) {
 
-            setLayout(new FlowLayout());
+			setLayout(new FlowLayout());
 
-            JLabel jLabel = new JLabel(label);
-            add(jLabel);
+			JLabel jLabel = new JLabel(label);
+			add(jLabel);
 
 
-            String currentValue;
+			String currentValue;
 
-            JToggleButton button;
+			JToggleButton button;
 
-            if ((boolean) constant.getValue()) {
+			if ((boolean) constant.getValue()) {
 
-                currentValue = "ON";
-                button = new JToggleButton(currentValue);
+				currentValue = "ON";
+				button = new JToggleButton(currentValue);
 
-                button.addActionListener(e -> {
-                    if (button.isSelected()) {
-                        button.setText("OFF");
+				button.addActionListener(e -> {
+					if (button.isSelected()) {
+						button.setText("OFF");
 
-                        constant.setValue(false);
+						constant.setValue(false);
 
-                    } else {
-                        button.setText("ON");
+					} else {
+						button.setText("ON");
 
-                        constant.setValue(true);
-                    }
-                });
+						constant.setValue(true);
+					}
+				});
 
-            } else {
-                currentValue = "OFF";
-                button = new JToggleButton(currentValue);
+			} else {
+				currentValue = "OFF";
+				button = new JToggleButton(currentValue);
 
-                button.addActionListener(e -> {
-                    if (button.isSelected()) {
-                        button.setText("ON");
+				button.addActionListener(e -> {
+					if (button.isSelected()) {
+						button.setText("ON");
 
-                        constant.setValue(true);
-                    } else {
-                        button.setText("OFF");
-                        constant.setValue(false);
-                    }
-                });
+						constant.setValue(true);
+					} else {
+						button.setText("OFF");
+						constant.setValue(false);
+					}
+				});
 
-            }
+			}
 
-            add(button);
+			add(button);
 
-        }
+		}
 
-    }
+	}
 
 
 }

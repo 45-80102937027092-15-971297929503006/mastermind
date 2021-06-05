@@ -28,8 +28,8 @@ public enum Constant {
 
 	private static final String initValue = ConstantCounterManager.initValue;
 	private final String id;
-	private Object value;
 	private final Object defaultValue;
+	private Object value;
 //	private Object initValue;
 
 	Constant(Object value) {

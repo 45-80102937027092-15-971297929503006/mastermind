@@ -1,7 +1,6 @@
 package civare.mastermind.windows.index;
 
 import civare.mastermind.eventDrivers.Command;
-import civare.mastermind.resourceManagers.images.Image;
 
 import javax.swing.*;
 import java.beans.PropertyChangeListener;
@@ -9,30 +8,30 @@ import java.beans.PropertyChangeSupport;
 
 public class RestartButton extends JButton {
 
-    private final PropertyChangeSupport support;
+	private final PropertyChangeSupport support;
 
-    public RestartButton() {
+	public RestartButton() {
 
-        support = new PropertyChangeSupport(this);
+		support = new PropertyChangeSupport(this);
 
 //        setIcon(Image.PLAY_AGAIN.getImageIcon());
 
-        addActionListener(e -> {
-            System.out.println("restart button clicked");
+		addActionListener(e -> {
+			System.out.println("restart button clicked");
 
-            support.firePropertyChange("center panel", null, Command.NEW_GAME);
+			support.firePropertyChange("center panel", null, Command.NEW_GAME);
 
-            support.firePropertyChange("north panel", null, Command.RESTART_NORTH_PANEL);
+			support.firePropertyChange("north panel", null, Command.RESTART_NORTH_PANEL);
 
-        });
+		});
 
-    }
+	}
 
-    public void addListener(PropertyChangeListener listener) {
-        support.addPropertyChangeListener(listener);
-    }
+	public void addListener(PropertyChangeListener listener) {
+		support.addPropertyChangeListener(listener);
+	}
 
-    public void removeListener(PropertyChangeListener propertyChangeListener) {
-        support.removePropertyChangeListener(propertyChangeListener);
-    }
+	public void removeListener(PropertyChangeListener propertyChangeListener) {
+		support.removePropertyChangeListener(propertyChangeListener);
+	}
 }

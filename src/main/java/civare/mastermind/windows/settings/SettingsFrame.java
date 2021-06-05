@@ -44,62 +44,62 @@ import java.beans.PropertyChangeSupport;
 
 public class SettingsFrame extends JFrame {
 
-    private final PropertyChangeSupport support;
+	private final PropertyChangeSupport support;
 
-    public SettingsFrame() {
-        super("Settings");
+	public SettingsFrame() {
+		super("Settings");
 
-        setSize(((Double) Constant.WIDTH.getValue()).intValue(), ((Double) Constant.HEIGHT.getValue()).intValue());
-        setLocation((Integer) Constant.LOCATION_X.getValue(), (Integer) Constant.LOCATION_Y.getValue());
-        setVisible(true);
-        setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
+		setSize(((Double) Constant.WIDTH.getValue()).intValue(), ((Double) Constant.HEIGHT.getValue()).intValue());
+		setLocation((Integer) Constant.LOCATION_X.getValue(), (Integer) Constant.LOCATION_Y.getValue());
+		setVisible(true);
+		setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
 
-        support = new PropertyChangeSupport(this);
+		support = new PropertyChangeSupport(this);
 
-        setLayout(new GridLayout(1, 1));
-        JTabbedPane tabbedPane = new JTabbedPane();
+		setLayout(new GridLayout(1, 1));
+		JTabbedPane tabbedPane = new JTabbedPane();
 
-        tabbedPane.addTab("General", new GeneralSettingsPanel());
-        tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
+		tabbedPane.addTab("General", new GeneralSettingsPanel());
+		tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
 
-        tabbedPane.addTab("Images", new ImagesSettingsPanel());
-        tabbedPane.setMnemonicAt(1, KeyEvent.VK_2);
+		tabbedPane.addTab("Images", new ImagesSettingsPanel());
+		tabbedPane.setMnemonicAt(1, KeyEvent.VK_2);
 
-        tabbedPane.addTab("Sound", new SoundSettingsPanel());
-        tabbedPane.setMnemonicAt(2, KeyEvent.VK_3);
+		tabbedPane.addTab("Sound", new SoundSettingsPanel());
+		tabbedPane.setMnemonicAt(2, KeyEvent.VK_3);
 
-        //Add the tabbed pane to this panel.
-        add(tabbedPane);
+		//Add the tabbed pane to this panel.
+		add(tabbedPane);
 
-        //The following line enables to use scrolling tabs.
-        tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
+		//The following line enables to use scrolling tabs.
+		tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 
 //        saves on close new settings
-        SettingsWindowListener settingsWindowListener = SettingsWindowListener.getInstance();
-        addWindowListener(settingsWindowListener);
+		SettingsWindowListener settingsWindowListener = SettingsWindowListener.getInstance();
+		addWindowListener(settingsWindowListener);
 
-    }
+	}
 
-    public static void main(String[] args) {
-        try {
-            SwingUtilities.invokeLater(SettingsFrame::new);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+	public static void main(String[] args) {
+		try {
+			SwingUtilities.invokeLater(SettingsFrame::new);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 
-    }
+	}
 
-    public SettingsWindowListener getSettingsWindowListener() {
-        return SettingsWindowListener.getInstance();
-    }
+	public SettingsWindowListener getSettingsWindowListener() {
+		return SettingsWindowListener.getInstance();
+	}
 
-    @Override
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
-        support.addPropertyChangeListener(listener);
+	@Override
+	public void addPropertyChangeListener(PropertyChangeListener listener) {
+		support.addPropertyChangeListener(listener);
 
 //        todo handle this listener
 //        this is fired whatever listener is added
-        support.firePropertyChange("stop timer element", null, Command.STOP_TIMER);
-    }
+		support.firePropertyChange("stop timer element", null, Command.STOP_TIMER);
+	}
 
 }

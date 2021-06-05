@@ -1,7 +1,6 @@
 package civare.mastermind.windows.index;
 
 import civare.mastermind.eventDrivers.Command;
-import civare.mastermind.resourceManagers.constants.Config;
 import civare.mastermind.resourceManagers.constants.Constant;
 import civare.mastermind.resourceManagers.constants.ConstantsManager;
 import civare.mastermind.windows.settings.SettingsWindowListener;
@@ -16,119 +15,119 @@ import java.beans.PropertyChangeListener;
 
 public class MainFrame extends JFrame implements PropertyChangeListener {
 
-    private final NorthPanel northPanel;
-    private final CenterPanel centerPanel;
-    private final RestartButton restartButton;
+	private final NorthPanel northPanel;
+	private final CenterPanel centerPanel;
+	private final RestartButton restartButton;
 
-    public MainFrame() {
-        super("minesweeper");
+	public MainFrame() {
+		super("minesweeper");
 
-        ConstantsManager.initializeConstants();
+		ConstantsManager.initializeConstants();
 
-        setVisible(true);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setLayout(new BorderLayout());
+		setVisible(true);
+		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		setLayout(new BorderLayout());
 
-        setSize(((Double) Constant.WIDTH.getValue()).intValue(),
-                ((Double) Constant.HEIGHT.getValue()).intValue());
-        setLocation((Integer) Constant.LOCATION_X.getValue(), (Integer) Constant.LOCATION_Y.getValue());
+		setSize(((Double) Constant.WIDTH.getValue()).intValue(),
+				((Double) Constant.HEIGHT.getValue()).intValue());
+		setLocation((Integer) Constant.LOCATION_X.getValue(), (Integer) Constant.LOCATION_Y.getValue());
 
-        addWindowListener(new MainFrameWindowListener(this));
+		addWindowListener(new MainFrameWindowListener(this));
 
-        northPanel = new NorthPanel();
+		northPanel = new NorthPanel();
 
-        centerPanel = new CenterPanel();
+		centerPanel = new CenterPanel();
 
-        restartButton = northPanel.getRestartButton();
+		restartButton = northPanel.getRestartButton();
 
-        add(northPanel, BorderLayout.NORTH);
-        add(centerPanel, BorderLayout.CENTER);
+		add(northPanel, BorderLayout.NORTH);
+		add(centerPanel, BorderLayout.CENTER);
 
-        restartButton.addListener(centerPanel);
-        restartButton.addListener(northPanel);
+		restartButton.addListener(centerPanel);
+		restartButton.addListener(northPanel);
 //        centerPanel.addListener(northPanel);
 
-        SettingsWindowListener.getInstance().addListener(this);
-        SettingsWindowListener.getInstance().addListener(northPanel);
+		SettingsWindowListener.getInstance().addListener(this);
+		SettingsWindowListener.getInstance().addListener(northPanel);
 
-    }
+	}
 
-    public void restartSequence() {
-        System.out.println("restart seq started");
+	public void restartSequence() {
+		System.out.println("restart seq started");
 
-        SettingsWindowListener.getInstance().removeListener(this);
-        SettingsWindowListener.getInstance().removeListener(northPanel);
+		SettingsWindowListener.getInstance().removeListener(this);
+		SettingsWindowListener.getInstance().removeListener(northPanel);
 
-        restartButton.removeListener(centerPanel);
+		restartButton.removeListener(centerPanel);
 //        centerPanel.removeListener(northPanel);
-        restartButton.removeListener(northPanel);
+		restartButton.removeListener(northPanel);
 
-        dispose();
-        new MainFrame();
-    }
+		dispose();
+		new MainFrame();
+	}
 
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-        if (evt.getNewValue() == Command.RESTART_MAINFRAME) {
+	@Override
+	public void propertyChange(PropertyChangeEvent evt) {
+		if (evt.getNewValue() == Command.RESTART_MAINFRAME) {
 
-            restartSequence();
+			restartSequence();
 
-        } else {
-            System.out.println("non good var in mainframe ");
-        }
+		} else {
+			System.out.println("non good var in mainframe ");
+		}
 
 
-    }
+	}
 
-    /**
-     * saves all constants on close
-     * logs location and dimensions
-     */
-    private static class MainFrameWindowListener implements WindowListener {
+	/**
+	 * saves all constants on close
+	 * logs location and dimensions
+	 */
+	private static class MainFrameWindowListener implements WindowListener {
 
-        private final JFrame jFrame;
+		private final JFrame jFrame;
 
-        public MainFrameWindowListener(JFrame jFrame) {
-            this.jFrame = jFrame;
-        }
+		public MainFrameWindowListener(JFrame jFrame) {
+			this.jFrame = jFrame;
+		}
 
-        @Override
-        public void windowClosing(WindowEvent e) {
-            System.out.println("closing");
+		@Override
+		public void windowClosing(WindowEvent e) {
+			System.out.println("closing");
 
-            Constant.LOCATION_X.setValue(jFrame.getX());
-            Constant.LOCATION_Y.setValue(jFrame.getY());
+			Constant.LOCATION_X.setValue(jFrame.getX());
+			Constant.LOCATION_Y.setValue(jFrame.getY());
 
-            Constant.WIDTH.setValue(jFrame.getSize().getWidth());
-            Constant.HEIGHT.setValue(jFrame.getSize().getHeight());
+			Constant.WIDTH.setValue(jFrame.getSize().getWidth());
+			Constant.HEIGHT.setValue(jFrame.getSize().getHeight());
 
 //            fixme
 //            ConstantsManager.updateConstants(Config.getConstantsMemoryPath());
-        }
+		}
 
-        @Override
-        public void windowOpened(WindowEvent e) {
-        }
+		@Override
+		public void windowOpened(WindowEvent e) {
+		}
 
-        @Override
-        public void windowClosed(WindowEvent e) {
-        }
+		@Override
+		public void windowClosed(WindowEvent e) {
+		}
 
-        @Override
-        public void windowIconified(WindowEvent e) {
-        }
+		@Override
+		public void windowIconified(WindowEvent e) {
+		}
 
-        @Override
-        public void windowDeiconified(WindowEvent e) {
-        }
+		@Override
+		public void windowDeiconified(WindowEvent e) {
+		}
 
-        @Override
-        public void windowActivated(WindowEvent e) {
-        }
+		@Override
+		public void windowActivated(WindowEvent e) {
+		}
 
-        @Override
-        public void windowDeactivated(WindowEvent e) {
-        }
-    }
+		@Override
+		public void windowDeactivated(WindowEvent e) {
+		}
+	}
 
 }

@@ -6,27 +6,27 @@ import java.awt.event.ActionListener;
 
 public class ButtonActionListener implements ActionListener {
 
-    private final JButton[][] buttons;
-    private final int[][] table;
-    private final JButton currentHoveredButton;
+	private final JButton[][] buttons;
+	private final int[][] table;
+	private final JButton currentHoveredButton;
 
-    //    if field with mine is opened game is over
+	//    if field with mine is opened game is over
 //    all buttons must be locked
 //    this is controller for it
-    private boolean areButtonsActive = true;
-    private int numOfOpenedCells = 0;
+	private boolean areButtonsActive = true;
+	private int numOfOpenedCells = 0;
 
-    public ButtonActionListener(JButton[][] buttons, int[][] table, JButton currentHoveredButton,
-                                boolean areButtonsActive, int numOfOpenedCells) {
-        this.buttons = buttons;
-        this.table = table;
-        this.currentHoveredButton = currentHoveredButton;
-        this.areButtonsActive = areButtonsActive;
-        this.numOfOpenedCells = numOfOpenedCells;
-    }
+	public ButtonActionListener(JButton[][] buttons, int[][] table, JButton currentHoveredButton,
+								boolean areButtonsActive, int numOfOpenedCells) {
+		this.buttons = buttons;
+		this.table = table;
+		this.currentHoveredButton = currentHoveredButton;
+		this.areButtonsActive = areButtonsActive;
+		this.numOfOpenedCells = numOfOpenedCells;
+	}
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
+	@Override
+	public void actionPerformed(ActionEvent e) {
 //        checkForWin();
 //        if (areButtonsActive) {
 //            for (int i = 0; i < Constants.NUMBER_OF_ROWS; i++){
@@ -59,5 +59,5 @@ public class ButtonActionListener implements ActionListener {
 //                }
 //            }
 //        }
-    }
+	}
 }
