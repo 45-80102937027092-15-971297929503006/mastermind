@@ -60,60 +60,61 @@ public enum Image {
     STOP(Config.getStartStopImagesPath(), "pause"),
     START(Config.getStartStopImagesPath(), "play"),
 
+
     ;
 
-    public enum Button {
-        VICTORY,
-        DEFEAT,
-        PLAY_AGAIN,
-        ;
-
-        private static final String path = Config.getButtonPath();
-        private final String name;
-        private final String location;
+//    public enum Button {
+//        VICTORY,
+//        DEFEAT,
+//        PLAY_AGAIN,
+//        ;
 //
-
-        Button() {
-            this.name = this.name().toLowerCase();
-            this.location =
-                    Config.getBaseFolder() +
-                    getClass().getSimpleName().toLowerCase() +
-                    Config.getBackslash() +
-                    name +
-                    Config.getDOT() +
-                    Config.getImagesFormatName();
-
-            System.out.println(name + " - " + location);
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public static String getPath() {
-            return path;
-        }
-
-        public URL getLocation() {
-            return Objects.requireNonNull(Main.class.getResource(this.location));
-        }
-
-//        public ImageIcon getImageIcon() {
-//            try {
-//                imageIcon = new ImageIcon(getLocation(path));
-//                defaultImageIcon = new ImageIcon(getLocation(path));
+//        private static final String path = Config.getButtonPath();
+//        private final String name;
+//        private final String location;
+////
 //
+//        Button() {
+//            this.name = this.name().toLowerCase();
+//            this.location =
+//                    Config.getBaseFolder() +
+//                    getClass().getSimpleName().toLowerCase() +
+//                    Config.getBackslash() +
+//                    name +
+//                    Config.getDOT() +
+//                    Config.getImagesFormatName();
 //
-//                //            Path p = Paths.get( "/resources", "images", "time", "0.png");
-//
-//            } catch (Exception e) {
-//
-//                System.out.println("error in Image.java while loading image "+ path);
-//
-//                System.exit(-1);
-//            }
+//            System.out.println(name + " - " + location);
 //        }
-    }
+//
+//        public String getName() {
+//            return name;
+//        }
+//
+//        public static String getPath() {
+//            return path;
+//        }
+//
+//        public URL getLocation() {
+//            return Objects.requireNonNull(Main.class.getResource(this.location));
+//        }
+//
+////        public ImageIcon getImageIcon() {
+////            try {
+////                imageIcon = new ImageIcon(getLocation(path));
+////                defaultImageIcon = new ImageIcon(getLocation(path));
+////
+////
+////                //            Path p = Paths.get( "/resources", "images", "time", "0.png");
+////
+////            } catch (Exception e) {
+////
+////                System.out.println("error in Image.java while loading image "+ path);
+////
+////                System.exit(-1);
+////            }
+////        }
+//    }
 
 
     private final String path;
