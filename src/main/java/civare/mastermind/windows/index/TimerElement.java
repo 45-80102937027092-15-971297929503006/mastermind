@@ -3,7 +3,6 @@ package civare.mastermind.windows.index;
 import civare.mastermind.eventDrivers.Command;
 import civare.mastermind.resourceManagers.constants.Constant;
 import civare.mastermind.resourceManagers.constants.ConstantsManager;
-import civare.mastermind.resourceManagers.images.ImageManager;
 import civare.mastermind.resourceManagers.images.types.Time;
 
 import javax.swing.*;
@@ -32,7 +31,7 @@ public class TimerElement extends JPanel implements PropertyChangeListener {
 	private int leastSigSecDigit;
 
 	private boolean isTicking = false;
-	private PropertyChangeSupport support;
+	private final PropertyChangeSupport support;
 
 	public TimerElement() {
 		support = new PropertyChangeSupport(this);
@@ -91,62 +90,7 @@ public class TimerElement extends JPanel implements PropertyChangeListener {
 	}
 
 	private static void updateImage(JLabel tile, int digit) {
-		switch (digit) {
-
-
-			case 0: {
-				tile.setIcon(Time.T_0.getImageIcon());
-				break;
-			}
-			case 1: {
-				tile.setIcon(Time.T_1.getImageIcon());
-				break;
-			}
-			case 2: {
-				tile.setIcon(Time.T_2.getImageIcon());
-				break;
-			}
-			case 3: {
-				tile.setIcon(Time.T_3.getImageIcon());
-				break;
-			}
-			case 4: {
-				tile.setIcon(Time.T_4.getImageIcon());
-				break;
-			}
-			case 5: {
-				tile.setIcon(Time.T_5.getImageIcon());
-				break;
-			}
-			case 6: {
-				tile.setIcon(Time.T_6.getImageIcon());
-				break;
-			}
-			case 7: {
-				tile.setIcon(Time.T_7.getImageIcon());
-				break;
-			}
-			case 8: {
-				tile.setIcon(Time.T_8.getImageIcon());
-				break;
-			}
-			case 9: {
-				tile.setIcon(Time.T_9.getImageIcon());
-				break;
-			}
-		}
-	}
-
-	public void addListener(PropertyChangeListener listener) {
-		support.addPropertyChangeListener(listener);
-	}
-
-	public void removeListener(PropertyChangeListener p) {
-		support.removePropertyChangeListener(p);
-	}
-
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(TestFrame::new);
+		tile.setIcon(Time.getLocationByIndex(digit));
 	}
 
 	public boolean isTicking() {
@@ -155,23 +99,16 @@ public class TimerElement extends JPanel implements PropertyChangeListener {
 
 	public void startOrContinueTimer() {
 
-//        if (!isStarted) {
 		timer.start();
 		isTicking = true;
 
-
-//            isStarted = true;
-//        } else {
-//            System.out.println("timer already started");
-//        }
 	}
 
 	public void stopTimer() {
 
 		timer.stop();
-//        isTicking = false;
-	}
 
+	}
 
 	public void restartTimer() {
 
@@ -192,6 +129,13 @@ public class TimerElement extends JPanel implements PropertyChangeListener {
 		return String.valueOf(mostSigMinDigit + leastSigMinDigit + mostSigSecDigit + leastSigSecDigit);
 	}
 
+	public void addListener(PropertyChangeListener listener) {
+		support.addPropertyChangeListener(listener);
+	}
+
+	public void removeListener(PropertyChangeListener p) {
+		support.removePropertyChangeListener(p);
+	}
 
 	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
@@ -206,6 +150,10 @@ public class TimerElement extends JPanel implements PropertyChangeListener {
 			System.out.println(evt);
 			System.out.println();
 		}
+	}
+
+	public static void main(String[] args) {
+		SwingUtilities.invokeLater(TestFrame::new);
 	}
 
 	private static class TestFrame extends JFrame {
