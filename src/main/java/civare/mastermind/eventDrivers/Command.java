@@ -20,5 +20,8 @@ public enum Command {
 	STOP_TIMER,
 	START_OR_CONTINUE_TIMER,
 
+	TIME_EXCEEDED,
+
+
 
 }

@@ -11,6 +11,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.concurrent.TimeUnit;
 
 //            System.out.println(new java.text.SimpleDateFormat("hh:mm:ss").format(TimerElement.time));
@@ -31,21 +32,17 @@ public class TimerElement extends JPanel implements PropertyChangeListener {
 	private int leastSigSecDigit;
 
 	private boolean isTicking = false;
+	private PropertyChangeSupport support;
 
 	public TimerElement() {
+		support = new PropertyChangeSupport(this);
+
 		setBorder(BorderFactory.createLineBorder(Color.black));
 		setLayout(new FlowLayout());
 
-
-//        try {
-//            ImageIcon zeroImage = Image.T_ZERO.getImageIcon();
-//        } catch (Exception e) {
-//            System.out.println("no init image");
-//        }
-
 		ImageIcon zero = Time.T_0.getImageIcon();
 
-		mostSigMinDigitLabel = new JLabel(Time.T_0.getImageIcon());
+		mostSigMinDigitLabel = new JLabel(zero);
 		add(mostSigMinDigitLabel);
 
 		leastSigMinDigitLabel = new JLabel(zero);
@@ -65,7 +62,6 @@ public class TimerElement extends JPanel implements PropertyChangeListener {
 
 			time += 1000;
 
-
 			int seconds = (int) (TimeUnit.MILLISECONDS.toSeconds(time)
 					- TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(time)));
 
@@ -83,11 +79,9 @@ public class TimerElement extends JPanel implements PropertyChangeListener {
 			updateImage(leastSigSecDigitLabel, leastSigSecDigit);
 
 			if (minutes == 60) {
-				System.out.println("end");
-				System.out.println("handle this in TimerElement action listener");
-				System.exit(-1);
+				support.firePropertyChange("", null, Command.TIME_EXCEEDED);
+				System.out.println("time is up");
 			}
-
 
 		};
 		int delay = 1000;
@@ -141,6 +135,14 @@ public class TimerElement extends JPanel implements PropertyChangeListener {
 				break;
 			}
 		}
+	}
+
+	public void addListener(PropertyChangeListener listener) {
+		support.addPropertyChangeListener(listener);
+	}
+
+	public void removeListener(PropertyChangeListener p) {
+		support.removePropertyChangeListener(p);
 	}
 
 	public static void main(String[] args) {

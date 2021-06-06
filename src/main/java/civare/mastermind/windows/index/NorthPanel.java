@@ -44,6 +44,7 @@ public class NorthPanel extends JPanel implements PropertyChangeListener {
 		});
 		add(settingsButton);
 
+
 		pauseButton = new PauseButton();
 		pauseButton.addActionListener(e -> {
 			if (timerElement.isTicking()) {
@@ -67,6 +68,8 @@ public class NorthPanel extends JPanel implements PropertyChangeListener {
 		});
 		add(pauseButton);
 
+
+		timerElement.addListener(this);
 	}
 
 	public RestartButton getRestartButton() {
@@ -76,7 +79,7 @@ public class NorthPanel extends JPanel implements PropertyChangeListener {
 	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
 
-		if (evt.getNewValue() == Command.GAME_OVER) {
+		if (evt.getNewValue() == Command.GAME_OVER || evt.getNewValue() == Command.TIME_EXCEEDED) {
 			if (!isGameOver) {
 
 				restartButton.setIcon(Button.DEFEAT.getImageIcon());
@@ -119,7 +122,11 @@ public class NorthPanel extends JPanel implements PropertyChangeListener {
 			timerElement.restartTimer();
 			settingsButton.setEnabled(true);
 
-		} else {
+		}
+//		else if (evt.getNewValue() == Command.TIME_EXCEEDED) {
+//			System.out.println("time up");
+//		}
+		else {
 			System.out.println("north panel unknown event");
 		}
 	}

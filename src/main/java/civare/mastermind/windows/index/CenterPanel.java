@@ -65,12 +65,7 @@ public class CenterPanel extends JPanel implements PropertyChangeListener {
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        if (evt.getNewValue() == Command.NEW_GAME) {
-//            restart();
-        } else {
-            System.out.println("unsupported command in center panel");
-            System.out.println(evt);
-        }
+		System.out.println("center panel change");
     }
 
     public void addListener(PropertyChangeListener listener) {

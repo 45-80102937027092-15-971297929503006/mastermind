@@ -18,8 +18,6 @@ public class RestartButton extends JButton implements PropertyChangeListener{
 
 		support = new PropertyChangeSupport(this);
 
-//        setIcon(Image.PLAY_AGAIN.getImageIcon());
-
 		addActionListener(e -> {
 			System.out.println("restart button clicked");
 

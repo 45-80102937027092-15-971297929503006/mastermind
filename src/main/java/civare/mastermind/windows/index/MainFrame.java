@@ -1,6 +1,7 @@
 package civare.mastermind.windows.index;
 
 import civare.mastermind.eventDrivers.Command;
+import civare.mastermind.resourceManagers.constants.Config;
 import civare.mastermind.resourceManagers.constants.Constant;
 import civare.mastermind.resourceManagers.constants.ConstantsManager;
 import civare.mastermind.windows.settings.SettingsWindowListener;
@@ -121,7 +122,7 @@ public class MainFrame extends JFrame implements PropertyChangeListener {
 			Constant.HEIGHT.setValue(jFrame.getSize().getHeight());
 
 //            fixme
-//            ConstantsManager.updateConstants(Config.getConstantsMemoryPath());
+			ConstantsManager.updateConstants(Config.getDefaultConstantsMemoryPath());
 		}
 
 		@Override
