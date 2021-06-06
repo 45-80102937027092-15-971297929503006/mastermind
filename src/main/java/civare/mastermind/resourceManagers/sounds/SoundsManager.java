@@ -4,7 +4,10 @@ import civare.mastermind.Main;
 import civare.mastermind.resourceManagers.constants.Constant;
 
 import javax.sound.sampled.*;
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Objects;
 
 public class SoundsManager {
@@ -34,6 +37,10 @@ public class SoundsManager {
 	private static void playClip(Sound sound) {
 
 		AudioListener listener = new AudioListener();
+		System.out.println(sound.getReducedDefaultPath());
+
+		System.out.println(Files.exists(Paths.get(sound.getReducedDefaultPath())));
+//		System.out.println(Files.exists(Paths.get("/resources/sounds/")));
 
 		try (AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(
 				Objects.requireNonNull(Main.class.getResource(sound.getReducedDefaultPath())))) {

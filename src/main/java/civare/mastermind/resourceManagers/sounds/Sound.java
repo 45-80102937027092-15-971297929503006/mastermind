@@ -2,8 +2,13 @@ package civare.mastermind.resourceManagers.sounds;
 
 //    TODO ability to add new sounds
 
+import civare.mastermind.Main;
+import civare.mastermind.resourceManagers.images.Config;
+
+import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 public enum Sound {
@@ -19,7 +24,7 @@ public enum Sound {
 
 	private static final String separator = "/";
 	private static final String REDUCED_DEFAULT_PATH =
-			separator;
+			separator + "sounds" + separator + "defeat_sounds" + separator;
 	//                    "sounds" +
 //                    separator +
 //                    "defeat_sounds" +
@@ -34,6 +39,27 @@ public enum Sound {
 		this.path = path;
 	}
 
+	public URL getLocation() {
+
+		String location =
+//                          images folder
+//				Config.getBasePath() +
+
+				separator + "sounds"+
+//                                type folder
+						Config.getBackslash() +
+						getDeclaringClass().getSimpleName().toLowerCase() +
+
+						Config.getBackslash() +
+//                                image
+						name().toLowerCase() +
+						Config.getDOT() +
+						Config.getImagesFormatName();
+
+//		System.out.println("location: " + location);
+
+		return Objects.requireNonNull(Main.class.getResource(location));
+	}
 
 	static Sound getRandomSoundDifferentFromCurrent() {
 		Sound next = getRandomSound();
@@ -51,7 +77,7 @@ public enum Sound {
 	}
 
 	String getReducedDefaultPath() {
-		return REDUCED_DEFAULT_PATH + path + EXTENSION;
+		return REDUCED_DEFAULT_PATH + SOUND_PATH_0.path + EXTENSION;
 	}
 
 }

@@ -109,9 +109,12 @@ public class NorthPanel extends JPanel implements PropertyChangeListener {
 
 			isGameOver = false;
 
-		} else if (evt.getNewValue() == Command.START_TIMER) {
+		} else if (evt.getNewValue() == Command.START_OR_CONTINUE_TIMER) {
 			timerElement.startOrContinueTimer();
-
+		} else if(evt.getNewValue() == Command.STOP_TIMER) {
+			timerElement.stopTimer();
+		} else if (evt.getNewValue() == Command.RESTART_TIMER) {
+			timerElement.restartTimer();
 		} else if (evt.getNewValue() == Command.RESTART_MAINFRAME) {
 			timerElement.restartTimer();
 			settingsButton.setEnabled(true);

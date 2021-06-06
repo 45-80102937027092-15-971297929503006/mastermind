@@ -18,5 +18,7 @@ public enum Command {
 
 	RESTART_TIMER,
 	STOP_TIMER,
-	START_TIMER
+	START_OR_CONTINUE_TIMER,
+
+
 }
