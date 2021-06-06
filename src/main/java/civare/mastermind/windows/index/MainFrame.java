@@ -51,7 +51,11 @@ public class MainFrame extends JFrame implements PropertyChangeListener {
 		SettingsWindowListener.getInstance().addListener(northPanel);
 		restartButton.addListener(centerPanel);
 		restartButton.addListener(northPanel);
-		addPropertyChangeListener(centerPanel);
+//		addPropertyChangeListener(centerPanel);
+
+
+		centerPanel.addListener(northPanel);
+
 	}
 
 	/**

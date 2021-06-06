@@ -78,6 +78,13 @@ public class Example implements PropertyChangeListener {
 
 		if (evt.getSource() == btn) {
 			System.out.println("button caught");
+
+			if (evt.getNewValue() == Command.NEW_GAME) {
+				System.out.println("new game command");
+			} else {
+				System.out.println("other command");
+			}
+
 		} else {
 			System.out.println("sth else");
 		}

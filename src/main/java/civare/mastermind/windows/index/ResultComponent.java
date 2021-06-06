@@ -57,8 +57,6 @@ public class ResultComponent extends JButton {
 			setSize(((Double) Constant.WIDTH.getValue()).intValue(), ((Double) Constant.HEIGHT.getValue()).intValue());
 			setLocation((Integer) Constant.LOCATION_X.getValue(), (Integer) Constant.LOCATION_Y.getValue());
 
-			///////////////////////////////////////////////
-
 			add(new ResultComponent());
 
 		}
