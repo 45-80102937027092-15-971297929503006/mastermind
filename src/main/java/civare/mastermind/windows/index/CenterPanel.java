@@ -1,29 +1,71 @@
 package civare.mastermind.windows.index;
 
+import civare.mastermind.eventDrivers.Command;
 import civare.mastermind.resourceManagers.images.types.Pegs;
 
 import javax.swing.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
 //    TODO
 //      enable/ disable left click operations while under right click element (flag, question mark)
 
 public class CenterPanel extends JPanel implements PropertyChangeListener {
+	JButton timer;
+	JButton timer2;
+	JButton timer3;
+
+	JButton restart;
+	JButton resultLeft;
+	JButton resultRight;
+	JButton startStop;
+
 	public CenterPanel() {
-		JButton btn = new JButton();
-		add(btn);
-		btn.setIcon(Pegs.BLACK.getImageIcon());
+		support = new PropertyChangeSupport(this);
+
+		timer = new JButton("start stop timer");
+		add(timer);
+		timer.addActionListener(e -> {
+//			firePropertyChange("tmep", Command.RESTART_MAINFRAME);
+//			firePropertyChange(Command.RESTART_MAINFRAME);
+			support.firePropertyChange("game won", null, Command.GAME_WON);
+//
+			System.out.println("fired game won");
+
+		});
+
+		timer2 = new JButton("stop timer");
+		add(timer2);
+
+		timer3 = new JButton("restart timer");
+		add(timer3);
+
+		restart = new JButton("restart");
+		resultLeft = new JButton("result left");
+		resultRight = new JButton("result right");
+		startStop = new JButton("start stop");
+
+
+		add(restart);
+		add(resultLeft);
+		add(resultRight);
+		add(startStop);
+
+//
+//		JButton btn = new JButton();
+//		add(btn);
+//		btn.setIcon(Pegs.BLACK.getImageIcon());
 
 //        add(new JButton(Image.BLACK.getImageIcon()));
 	}
 
-	@Override
-	public void propertyChange(PropertyChangeEvent evt) {
+//	@Override
+//	public void propertyChange(PropertyChangeEvent evt) {
+//
+//	}
 
-	}
-
-//    private final PropertyChangeSupport support;
+    private  PropertyChangeSupport support;
 //
 //    // columns * rows
 ////    private final int numOfCells;
@@ -190,23 +232,23 @@ public class CenterPanel extends JPanel implements PropertyChangeListener {
 //    }
 //
 //
-//    @Override
-//    public void propertyChange(PropertyChangeEvent evt) {
-//        if (evt.getNewValue() == Command.NEW_GAME) {
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        if (evt.getNewValue() == Command.NEW_GAME) {
 //            restart();
-//        } else {
-//            System.out.println("unsupported command in center panel");
-//            System.out.println(evt);
-//        }
-//    }
-//
-//    public void addListener(PropertyChangeListener listener) {
-//        support.addPropertyChangeListener(listener);
-//    }
-//
-//    public void removeListener(PropertyChangeListener p) {
-//        support.removePropertyChangeListener(p);
-//    }
+        } else {
+            System.out.println("unsupported command in center panel");
+            System.out.println(evt);
+        }
+    }
+
+    public void addListener(PropertyChangeListener listener) {
+        support.addPropertyChangeListener(listener);
+    }
+
+    public void removeListener(PropertyChangeListener p) {
+        support.removePropertyChangeListener(p);
+    }
 //
 //    private static class RightClickListener extends MouseAdapter {
 //        private static boolean areButtonsActive = true;

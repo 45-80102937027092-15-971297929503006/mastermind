@@ -46,7 +46,7 @@ public interface Common {
 						Config.getDOT() +
 						Config.getImagesFormatName();
 
-		System.out.println("location: " + location);
+//		System.out.println("location: " + location);
 
 		return Objects.requireNonNull(Main.class.getResource(location));
 	}

@@ -102,49 +102,49 @@ public class ImageManager {
 		return resizedImage;
 	}
 
-	/**
-	 * used for restarting images
-	 * copy from original to custom
-	 */
-	private static class CopyFileVisitor extends SimpleFileVisitor<Path> {
-		private final Path targetPath;
-		private Path sourcePath = null;
-
-		public CopyFileVisitor(Path targetPath) {
-			this.targetPath = targetPath;
-		}
-
-		@Override
-		public FileVisitResult preVisitDirectory(final Path dir,
-												 final BasicFileAttributes attrs) {
-			if (sourcePath == null) {
-				sourcePath = dir;
-			}
-			System.out.println();
-			System.out.println(dir);
-
-			return FileVisitResult.CONTINUE;
-		}
-
-		@Override
-		public FileVisitResult visitFile(final Path file,
-										 final BasicFileAttributes attrs) throws IOException {
-
-			System.out.println(file);
-
-			File myObj = new File(String.valueOf(targetPath.resolve(sourcePath.relativize(file))));
-
-			System.out.println("** " + myObj);
-			if (myObj.delete()) {
-				System.out.println("Deleted the file: " + myObj.getName());
-			} else {
-				System.out.println("Failed to delete the file.");
-			}
-
-			Files.copy(file,
-					targetPath.resolve(sourcePath.relativize(file)));
-			return FileVisitResult.CONTINUE;
-		}
-	}
+//	/**
+//	 * used for restarting images
+//	 * copy from original to custom
+//	 */
+//	private static class CopyFileVisitor extends SimpleFileVisitor<Path> {
+//		private final Path targetPath;
+//		private Path sourcePath = null;
+//
+//		public CopyFileVisitor(Path targetPath) {
+//			this.targetPath = targetPath;
+//		}
+//
+//		@Override
+//		public FileVisitResult preVisitDirectory(final Path dir,
+//												 final BasicFileAttributes attrs) {
+//			if (sourcePath == null) {
+//				sourcePath = dir;
+//			}
+//			System.out.println();
+//			System.out.println(dir);
+//
+//			return FileVisitResult.CONTINUE;
+//		}
+//
+//		@Override
+//		public FileVisitResult visitFile(final Path file,
+//										 final BasicFileAttributes attrs) throws IOException {
+//
+//			System.out.println(file);
+//
+//			File myObj = new File(String.valueOf(targetPath.resolve(sourcePath.relativize(file))));
+//
+//			System.out.println("** " + myObj);
+//			if (myObj.delete()) {
+//				System.out.println("Deleted the file: " + myObj.getName());
+//			} else {
+//				System.out.println("Failed to delete the file.");
+//			}
+//
+//			Files.copy(file,
+//					targetPath.resolve(sourcePath.relativize(file)));
+//			return FileVisitResult.CONTINUE;
+//		}
+//	}
 
 }

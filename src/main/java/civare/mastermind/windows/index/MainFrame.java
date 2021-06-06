@@ -22,39 +22,47 @@ public class MainFrame extends JFrame implements PropertyChangeListener {
 	public MainFrame() {
 		super("minesweeper");
 
+//		load constants
 		ConstantsManager.initializeConstants();
 
+//		frame default settings
 		setVisible(true);
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setLayout(new BorderLayout());
 
 		setSize(((Double) Constant.WIDTH.getValue()).intValue(),
 				((Double) Constant.HEIGHT.getValue()).intValue());
+
 		setLocation((Integer) Constant.LOCATION_X.getValue(), (Integer) Constant.LOCATION_Y.getValue());
 
-		addWindowListener(new MainFrameWindowListener(this));
-
+//		utils panel
 		northPanel = new NorthPanel();
-
-		centerPanel = new CenterPanel();
-
 		restartButton = northPanel.getRestartButton();
-
 		add(northPanel, BorderLayout.NORTH);
+
+//		game panel
+		centerPanel = new CenterPanel();
 		add(centerPanel, BorderLayout.CENTER);
 
-		restartButton.addListener(centerPanel);
-		restartButton.addListener(northPanel);
+//		listeners
+		addWindowListener(new MainFrameWindowListener(this));
 //        centerPanel.addListener(northPanel);
-
 		SettingsWindowListener.getInstance().addListener(this);
 		SettingsWindowListener.getInstance().addListener(northPanel);
-
+		restartButton.addListener(centerPanel);
+		restartButton.addListener(northPanel);
+		addPropertyChangeListener(centerPanel);
 	}
 
+	/**
+	 * delete current {@code MainFrame} and create new
+	 * used when current game is done or when settings are changed
+	 * this is main mechanism for restarting game
+	 */
 	public void restartSequence() {
-		System.out.println("restart seq started");
+		System.out.println("*** " + (new Throwable().getStackTrace())[0].getMethodName() + " ***");
 
+//		detach linked listeners
 		SettingsWindowListener.getInstance().removeListener(this);
 		SettingsWindowListener.getInstance().removeListener(northPanel);
 
@@ -62,12 +70,19 @@ public class MainFrame extends JFrame implements PropertyChangeListener {
 //        centerPanel.removeListener(northPanel);
 		restartButton.removeListener(northPanel);
 
+//		delete current and create new MainFrame
 		dispose();
 		new MainFrame();
 	}
 
+	/**
+	 * waits for change in listeners
+	 * @param evt
+	 */
 	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
+		System.out.println("*** " + (new Throwable().getStackTrace())[0].getMethodName() + " ***");
+
 		if (evt.getNewValue() == Command.RESTART_MAINFRAME) {
 
 			restartSequence();

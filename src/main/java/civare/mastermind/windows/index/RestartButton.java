@@ -1,16 +1,20 @@
 package civare.mastermind.windows.index;
 
 import civare.mastermind.eventDrivers.Command;
+import civare.mastermind.resourceManagers.images.types.Button;
 
 import javax.swing.*;
+import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-public class RestartButton extends JButton {
+public class RestartButton extends JButton implements PropertyChangeListener{
 
 	private final PropertyChangeSupport support;
 
 	public RestartButton() {
+
+		this.setIcon(Button.PLAY_AGAIN.getImageIcon());
 
 		support = new PropertyChangeSupport(this);
 
@@ -25,6 +29,15 @@ public class RestartButton extends JButton {
 
 		});
 
+	}
+
+	@Override
+	public void propertyChange(PropertyChangeEvent evt) {
+		if (evt.getNewValue() == Command.GAME_WON) {
+			System.out.println("game won catched in restart");
+		} else {
+			System.out.println("somethoing other trigferred");
+		}
 	}
 
 	public void addListener(PropertyChangeListener listener) {

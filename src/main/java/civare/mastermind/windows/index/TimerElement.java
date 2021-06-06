@@ -3,6 +3,7 @@ package civare.mastermind.windows.index;
 import civare.mastermind.eventDrivers.Command;
 import civare.mastermind.resourceManagers.constants.Constant;
 import civare.mastermind.resourceManagers.constants.ConstantsManager;
+import civare.mastermind.resourceManagers.images.ImageManager;
 import civare.mastermind.resourceManagers.images.types.Time;
 
 import javax.swing.*;
@@ -42,19 +43,21 @@ public class TimerElement extends JPanel implements PropertyChangeListener {
 //            System.out.println("no init image");
 //        }
 
-		mostSigMinDigitLabel = new JLabel("zeroImage");
+		ImageIcon zero = Time.T_0.getImageIcon();
+
+		mostSigMinDigitLabel = new JLabel(Time.T_0.getImageIcon());
 		add(mostSigMinDigitLabel);
 
-		leastSigMinDigitLabel = new JLabel("zeroImage");
+		leastSigMinDigitLabel = new JLabel(zero);
 		add(leastSigMinDigitLabel);
 
 		JLabel separator = new JLabel(":");
 		add(separator);
 
-		mostSigSecDigitLabel = new JLabel("zeroImage");
+		mostSigSecDigitLabel = new JLabel(zero);
 		add(mostSigSecDigitLabel);
 
-		leastSigSecDigitLabel = new JLabel("zeroImage");
+		leastSigSecDigitLabel = new JLabel(zero);
 		add(leastSigSecDigitLabel);
 
 
