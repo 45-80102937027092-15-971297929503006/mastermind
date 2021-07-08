@@ -6,9 +6,9 @@ import java.util.EnumSet;
  * jtext used for gui
  */
 public enum Constant {
-	//    NUMBER_OF_COLUMNS(10),
-//    NUMBER_OF_ROWS(10),
-//    NUMBER_OF_MINES(10),
+	NUMBER_OF_COLUMNS(10),
+    NUMBER_OF_ROWS(10),
+    NUMBER_OF_MINES(10),
 	LOCATION_X(20),
 	LOCATION_Y(20),
 	WIDTH(550.0),
@@ -30,13 +30,11 @@ public enum Constant {
 	private final String id;
 	private final Object defaultValue;
 	private Object value;
-//	private Object initValue;
 
 	Constant(Object value) {
 		this.id = this.name();
 		this.value = value;
 		this.defaultValue = value;
-//		this.value = initValue;
 
 		ConstantCounterManager.setNumOfConstants(ConstantCounterManager.getNumOfConstants() + 1);
 	}
@@ -61,22 +59,13 @@ public enum Constant {
 		return defaultValue;
 	}
 
+
+
 	@Override
 	public String toString() {
-		String type;
+		DataType.validateType(this.value);
 
-		if (value instanceof Integer) {
-			type = "Integer";
-		} else if (value instanceof Double) {
-			type = "Double";
-		} else if (value instanceof Boolean) {
-			type = "Boolean";
-		} else if (value instanceof String) {
-			type = "String";
-		} else {
-			type = "error";
-			System.exit(-1);
-		}
+		String type = DataType.getType(this.value).toString().toLowerCase();
 
 		return "Constant{ id= " + id + ", value= " + value + ", type= " + type + "}";
 	}
@@ -87,24 +76,12 @@ public enum Constant {
 
 	public Object getValue() {
 
-		if (value instanceof Integer) {
-			return Integer.parseInt(String.valueOf(value));
-		} else if (value instanceof Double) {
-			return Double.parseDouble(String.valueOf(value));
-		} else if (value instanceof Boolean) {
-			return Boolean.parseBoolean(String.valueOf(value));
-		} else if (value instanceof String) {
-			return value;
-		} else {
-			System.out.println("error; getValue");
-			System.exit(-1);
-		}
+		DataType.validateType(this.value);
 
 		return value;
 	}
 
 	public void setValue(Object value) {
-
 		if (this.value.getClass().equals(value.getClass())) {
 			this.value = value;
 		} else {

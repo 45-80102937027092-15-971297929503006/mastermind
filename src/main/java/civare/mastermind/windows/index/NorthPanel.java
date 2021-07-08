@@ -1,6 +1,6 @@
 package civare.mastermind.windows.index;
 
-import civare.mastermind.eventDrivers.Command;
+import civare.mastermind.trash.eventDrivers.Command;
 import civare.mastermind.resourceManagers.images.types.Button;
 import civare.mastermind.resourceManagers.images.types.Stop;
 import civare.mastermind.windows.settings.SettingsFrame;

@@ -1,6 +1,6 @@
 package civare.mastermind.windows.settings;
 
-import civare.mastermind.eventDrivers.Command;
+import civare.mastermind.trash.eventDrivers.Command;
 
 import java.awt.*;
 import java.awt.event.WindowEvent;

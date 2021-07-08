@@ -1,22 +1,10 @@
-package civare.mastermind.eventDrivers;
-
-import civare.mastermind.resourceManagers.images.types.Button;
-import civare.mastermind.windows.index.RestartButton;
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
+package civare.mastermind.trash.eventDrivers;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Container;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.beans.*;
 
 import javax.swing.*;
 
-import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.InputEvent;
-import java.awt.event.KeyEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 /*w ww. j  a va 2  s . c  o m*/

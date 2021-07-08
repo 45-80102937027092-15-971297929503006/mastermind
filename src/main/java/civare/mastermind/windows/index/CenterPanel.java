@@ -1,6 +1,6 @@
 package civare.mastermind.windows.index;
 
-import civare.mastermind.eventDrivers.Command;
+import civare.mastermind.trash.eventDrivers.Command;
 
 import javax.swing.*;
 import java.beans.PropertyChangeEvent;

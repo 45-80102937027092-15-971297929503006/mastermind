@@ -1,6 +1,6 @@
 package civare.mastermind.windows.index;
 
-import civare.mastermind.eventDrivers.Command;
+import civare.mastermind.trash.eventDrivers.Command;
 import civare.mastermind.resourceManagers.constants.Config;
 import civare.mastermind.resourceManagers.constants.Constant;
 import civare.mastermind.resourceManagers.constants.ConstantsManager;

@@ -211,9 +211,13 @@ public class ConstantsManager {
 
 		}
 
-		System.out.println("error log");
-		error_log.forEach((key, value) -> System.out.println(key + ":" + value));
-		System.out.println();
+		if (error_log.size() == 0) {
+			System.out.println("no errors in log");
+		} else {
+			System.out.println("error log");
+			error_log.forEach((key, value) -> System.out.println(key + ":" + value));
+			System.out.println();
+		}
 
 		return error_log;
 	}
